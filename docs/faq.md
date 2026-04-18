@@ -43,6 +43,14 @@ Las credenciales las proporciona el Ministerio del Interior. Contacta con la ofi
 
 Sí. Puedes gestionar reservas y recopilar datos de huéspedes sin credenciales. El envío al Ministerio se activa cuando las configures.
 
+### ¿Cuánto tiempo tengo para enviar el parte?
+
+La normativa exige la comunicación en el momento del check-in o en las 24 horas siguientes al inicio del hospedaje. Enviar fuera de plazo puede calificarse como incumplimiento, incluso si se envía más tarde.
+
+### ¿Qué pasa si el Ministerio rechaza un envío?
+
+La reserva queda en estado **Error** con el código y mensaje devueltos por SES.HOSPEDAJES. Corrige los datos indicados, vuelve a validar y reenvía. Consulta los [errores comunes](/referencia/errores-ses) y [problemas comunes](/guia/problemas-comunes) para más detalle.
+
 ### ¿Funciona en Cataluña y País Vasco?
 
 Actualmente no. Estas comunidades utilizan sistemas propios (Mossos d'Esquadra y Ertzaintza). La integración está prevista para futuras versiones.
@@ -60,6 +68,10 @@ No. Los huéspedes **siempre** pueden completar sus datos a través de los enlac
 ### ¿Puedo cancelar en cualquier momento?
 
 Sí. Al cancelar, mantienes el acceso hasta el final del período pagado.
+
+### ¿Qué sanciones hay si no cumplo el RD 933/2021?
+
+La omisión o inexactitud de la comunicación se tipifica como infracción leve (100–600 €) por la Ley Orgánica 4/2015 de Seguridad Ciudadana. Puede escalar a grave (601–30.000 €) o muy grave (30.001–600.000 €) por reiteración, volumen o conducta dolosa. Consulta la [referencia completa de sanciones](/referencia/sanciones) para detalle.
 
 ## Importación de reservas
 
