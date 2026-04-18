@@ -1,0 +1,4 @@
+Contact: mailto:security@registroviajero.com
+Expires: 2027-04-18T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://help.registroviajero.com/.well-known/security.txt
