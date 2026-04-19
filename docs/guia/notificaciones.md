@@ -1,3 +1,8 @@
+---
+title: Notificaciones
+description: Tipos de notificaciones que envía RegistroViajero, canales disponibles (en la app y push) y cómo configurar tus preferencias.
+---
+
 # Notificaciones
 
 RegistroViajero te mantiene informado sobre la actividad de tus reservas y tu equipo.

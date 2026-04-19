@@ -1,3 +1,8 @@
+---
+title: Equipo y roles
+description: Roles disponibles en RegistroViajero (propietario, administrador, miembro), qué puede hacer cada uno y cómo invitar o gestionar miembros.
+---
+
 # Equipo y roles
 
 RegistroViajero permite trabajar en equipo con diferentes niveles de acceso.

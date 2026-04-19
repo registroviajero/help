@@ -6,9 +6,10 @@ Help center for RegistroViajero — published at **help.registroviajero.com**. S
 
 - **Stealth commits.** Never include `Co-Authored-By: Claude` or any other Claude/Anthropic signature in commit messages or PR descriptions. Commit as the configured git user, nothing more.
 - **Keep facts in sync with the app.** This site describes behavior of `app.registroviajero.com`. If you change wording here, verify it still matches the app. If you changed the app, mirror the user-facing consequence here — outdated help docs are worse than missing ones.
-- **Spanish only.** All published content is in `es-ES`. Preserve Spanish domain terms (`parte de viajeros`, `reserva de hospedaje`, `código de arrendador`, `número de soporte`, `parentesco`). Do not translate them and do not anglicize them.
+- **Bilingual site.** Spanish (`es-ES`) at the root (`/`) and US English (`en-US`) under `/en/`. Spanish is the default locale and authoritative source; English is a courtesy translation and must mirror the Spanish structure page-for-page. Preserve Spanish domain terms as proper nouns in both locales: `SES.HOSPEDAJES`, `Real Decreto 933/2021` / `Royal Decree 933/2021`, `DNI`, `NIE`, `Mossos d'Esquadra`, `Ertzaintza`. When editing copy in one locale, mirror the change in the other — the nav, sidebar, FAQ, and schema must stay in sync. Terminology follows the marketing site at `registroviajero.com`: `parte de viajeros` → *guest report*, `reserva de hospedaje` → *lodging reservation*, `código de arrendador` → *lessor code*, `número de soporte` → *support number*, `parentesco` → *kinship*.
+- **Cross-locale alternates.** The translation map lives in `docs/.vitepress/config.ts` under `PAGE_ALTERNATES`. Whenever you add, rename, or delete a page in one locale, update the entry (or add a new one) so `<link rel="alternate" hreflang=…>` in page heads and `<xhtml:link …/>` in the sitemap stay correct. A missing entry silently breaks hreflang for that page.
 - **One intent per change.** No drive-by copy rewrites, no unasked-for restructuring. If a cleanup is worth doing, it earns its own PR.
-- **Surface uncertainty.** If a claim (pricing, locales, Ministry error codes, retention) could be stale, check the source repo (`/Users/asur/Code/registroviajero.com/CLAUDE.md`, `docs/ses-schema-reference.md`) before editing.
+- **Surface uncertainty.** If a claim (pricing, locales, Ministry error codes, retention) could be stale, check it against the app (`app.registroviajero.com`) and the marketing site (`registroviajero.com`) before editing.
 
 ## Quick reference
 
@@ -108,7 +109,7 @@ docs/
 - **Guest locales: 9.** `es, en, fr, de, it, pt, gl, eu, ca` — español, inglés, francés, alemán, italiano, portugués, gallego, euskera, catalán.
 - **Admin locales: 2.** Spanish + English (not listed publicly as a feature).
 - **Geographic coverage:** SES.HOSPEDAJES only. **Cataluña** (Mossos d'Esquadra) and **País Vasco** (Ertzaintza) are **not** supported yet. Do not imply otherwise.
-- **Billing:** 5 €/puesto/mes, minimum 2 puestos. 15-day trial, no credit card. Billed via Polar. Guest check-in is **never** blocked by subscription state — even an expired plan lets guests complete their links.
+- **Billing:** 5 €/alojamiento/mes, **no minimum** (you pay only for active accommodations). The 15-day trial has no credit-card requirement. Internally the app stores this as "seats" with a `SEAT_LIMIT` error code and a 2-seat trial default, but user-facing copy always says "alojamiento" / "accommodation" to match the marketing site. Billed via Polar. Guest check-in is **never** blocked by subscription state — even an expired plan lets guests complete their links.
 - **iCal sources:** Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, plus any `.ics` feed. Sync interval: every 15 minutes + manual.
 - **Retention:** 3 years per RD 933/2021, auto-deleted after that. Audit log is preserved (immutable) for legal compliance.
 - **Document rules:** DNI/NIE require `apellido2` and `número de soporte`. DNI is Spanish-only. Passport/foreign ID/travel doc require only the front photo.

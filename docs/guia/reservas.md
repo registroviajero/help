@@ -1,3 +1,8 @@
+---
+title: Crear reservas
+description: Cómo crear reservas manualmente, importarlas desde calendarios iCal, bloquear fechas y buscar o exportar reservas en RegistroViajero.
+---
+
 # Crear reservas
 
 ## Crear una reserva manual

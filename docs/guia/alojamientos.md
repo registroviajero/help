@@ -1,3 +1,8 @@
+---
+title: Añadir alojamientos
+description: Cómo dar de alta tus alojamientos en RegistroViajero, asignar credenciales SES y gestionar varias propiedades desde una sola cuenta de agencia.
+---
+
 # Añadir alojamientos
 
 ## Crear un alojamiento
@@ -19,9 +24,10 @@ Las provincias de Cataluña y País Vasco no aparecen en el selector, ya que est
 
 Puedes gestionar todos tus alojamientos desde una misma cuenta de agencia. Cada alojamiento tiene su propio código de establecimiento y puede usar credenciales SES diferentes.
 
-El número de alojamientos activos depende de tu suscripción:
-- **Periodo de prueba:** alojamientos ilimitados durante 15 días
-- **Plan Pro:** según los puestos contratados (mínimo 2)
+La facturación se calcula sobre los alojamientos activos:
+
+- **Periodo de prueba:** 15 días con acceso completo, sin tarjeta de crédito.
+- **Plan Pro:** 5 €/alojamiento/mes, sin mínimo. Solo pagas por los alojamientos activos; los desactivados no cuentan.
 
 ## Editar o desactivar
 

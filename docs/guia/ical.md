@@ -1,3 +1,8 @@
+---
+title: Importar calendarios (iCal)
+description: Cómo conectar Booking.com, Airbnb, VRBO y otros calendarios iCal para importar reservas automáticamente cada 15 minutos en RegistroViajero.
+---
+
 # Importar calendarios (iCal)
 
 Conecta los calendarios de tus plataformas de reservas para importar reservas automáticamente.

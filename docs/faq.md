@@ -1,3 +1,8 @@
+---
+title: Preguntas frecuentes
+description: "Respuestas a las dudas más habituales sobre RegistroViajero: registro de huéspedes, envío al Ministerio, precios, privacidad, sanciones y más."
+---
+
 # Preguntas frecuentes
 
 ## General
@@ -59,7 +64,7 @@ Actualmente no. Estas comunidades utilizan sistemas propios (Mossos d'Esquadra y
 
 ### ¿Cuánto cuesta?
 
-El plan Pro cuesta 5 €/puesto/mes (mínimo 2 puestos). Hay un periodo de prueba de 15 días con acceso ilimitado, sin tarjeta de crédito.
+El plan Pro cuesta **5 €/alojamiento/mes**, sin mínimo. Pagas solo por los alojamientos activos. Incluye **15 días de prueba gratuita**, sin tarjeta de crédito.
 
 ### ¿Se bloquea el check-in si caduca mi plan?
 

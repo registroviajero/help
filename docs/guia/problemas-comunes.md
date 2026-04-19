@@ -117,13 +117,13 @@ Algunos portales publican la fecha de fin como "el día siguiente al checkout" y
 
 El primer cobro se produce al finalizar el periodo de prueba de 15 días, salvo que canceles antes. A partir de ahí, se cobra mensualmente el mismo día. La gestión la realiza Polar.
 
-### Cambié el número de puestos y no veo el importe ajustado
+### Activé o desactivé un alojamiento y no veo el importe ajustado
 
-Los ajustes de puestos se prorratean en la siguiente factura. Puedes consultar el previsualizado de la próxima factura en **Configuración → Facturación**.
+Los cambios en el número de alojamientos activos se prorratean automáticamente y aparecen reflejados en la siguiente factura. Puedes consultar el borrador de la próxima factura en **Configuración → Facturación**.
 
-### Cancelé pero sigo viendo la opción de crear alojamientos
+### Cancelé pero sigo teniendo acceso a la cuenta
 
-Al cancelar, **mantienes el acceso hasta el final del periodo pagado**. Una vez cumplido ese plazo, la cuenta pasa a solo lectura (los enlaces de check-in siguen funcionando para los huéspedes).
+Al cancelar, **mantienes el acceso hasta el final del periodo pagado**. Una vez cumplido ese plazo, la cuenta pasa a solo lectura y no podrás enviar nuevas comunicaciones al Ministerio. Los enlaces de check-in siguen funcionando para los huéspedes.
 
 ## Sigue sin funcionar
 

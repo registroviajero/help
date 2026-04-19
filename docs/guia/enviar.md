@@ -1,3 +1,8 @@
+---
+title: Validar y enviar al Ministerio
+description: Flujo paso a paso para validar una reserva, generar los XML de parte de viajeros y reserva de hospedaje, y enviarlos a SES.HOSPEDAJES.
+---
+
 # Validar y enviar
 
 Una vez que todos los huéspedes de una reserva han completado sus datos, puedes validar y enviar la comunicación al Ministerio del Interior.

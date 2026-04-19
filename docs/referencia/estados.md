@@ -1,3 +1,8 @@
+---
+title: Estados de reserva
+description: Referencia de todos los estados posibles de una reserva y de un huésped en RegistroViajero, desde Pendiente hasta Confirmado o Error.
+---
+
 # Estados de reserva
 
 Cada reserva en RegistroViajero pasa por una serie de estados que reflejan su progreso desde la creación hasta la confirmación por el Ministerio.

@@ -1,3 +1,8 @@
+---
+title: Errores del Ministerio
+description: Errores habituales devueltos por SES.HOSPEDAJES al enviar un parte de viajeros y cómo resolver cada uno.
+---
+
 # Errores del Ministerio
 
 Cuando el Ministerio del Interior rechaza una comunicación a través de SES.HOSPEDAJES, RegistroViajero muestra el código de error y la descripción. Aquí encontrarás los errores más comunes y cómo resolverlos.

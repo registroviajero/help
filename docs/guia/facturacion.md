@@ -1,35 +1,42 @@
+---
+title: Facturación
+description: Precios de RegistroViajero (5 €/alojamiento/mes, sin mínimo), periodo de prueba de 15 días, cancelación y códigos de descuento. Pagos gestionados por Polar.
+---
+
 # Facturación
 
 ## Planes disponibles
 
 | Plan | Precio | Incluye |
 |------|--------|---------|
-| **Prueba** | 0 € (15 días) | Alojamientos ilimitados, huéspedes ilimitados, envío al Ministerio |
-| **Pro** | 5 €/puesto/mes | Alojamientos según puestos contratados (mín. 2), registros ilimitados, exportación CSV/PDF, soporte prioritario |
+| **Prueba** | 0 € (15 días) | Acceso completo, huéspedes ilimitados, envío al Ministerio |
+| **Pro** | 5 €/alojamiento/mes | Solo pagas por alojamientos activos, sin mínimo. Huéspedes ilimitados, exportación CSV/PDF, soporte prioritario |
 
-Cada puesto adicional se factura de forma prorrateada al añadirlo.
+La facturación es mensual. Al añadir o desactivar alojamientos, el importe se prorratea automáticamente en la siguiente factura.
 
 ## Periodo de prueba
 
-Al registrarte obtienes **15 días de prueba gratuita** con acceso ilimitado a alojamientos. No se requiere tarjeta de crédito. Tras el periodo de prueba, necesitas contratar el plan Pro para seguir creando alojamientos.
+Al registrarte obtienes **15 días de prueba gratuita** con acceso completo. No se requiere tarjeta de crédito. Tras el periodo de prueba, necesitas contratar el plan Pro para seguir enviando comunicaciones al Ministerio.
 
 ## Gestionar suscripción
 
-La facturación está disponible en **Configuración → Facturación** (solo accesible para el propietario de la agencia).
+La facturación está disponible en **Configuración → Facturación** (solo accesible para el rol **Propietario**).
 
 Desde ahí puedes:
-- Contratar o ampliar puestos
-- Ver el historial de pagos
+
+- Activar o desactivar alojamientos
+- Ver el historial de pagos y las próximas facturas
+- Actualizar tu método de pago
 - Cancelar la suscripción
 
-Los pagos se procesan a través de [Polar](https://polar.sh). No almacenamos datos de tarjetas de crédito.
+Los pagos se procesan a través de [Polar](https://polar.sh). RegistroViajero no almacena datos de tarjetas de crédito.
 
 ## Cancelación
 
-- Puedes cancelar en cualquier momento
-- El acceso se mantiene hasta el final del período pagado
-- Tras la cancelación, no se pueden crear nuevos alojamientos
-- No se ofrecen reembolsos por períodos parciales
+- Puedes cancelar en cualquier momento.
+- El acceso se mantiene hasta el final del período pagado.
+- Tras la cancelación, no podrás enviar nuevas comunicaciones al Ministerio, pero los enlaces de check-in de los huéspedes siguen funcionando.
+- No se ofrecen reembolsos por períodos parciales.
 
 ## Códigos de descuento
 

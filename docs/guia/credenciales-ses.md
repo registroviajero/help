@@ -1,3 +1,8 @@
+---
+title: Credenciales SES
+description: Qué son las credenciales SES.HOSPEDAJES, qué datos necesitas (usuario, contraseña, código de arrendador) y cómo añadirlas en RegistroViajero.
+---
+
 # Credenciales SES
 
 Las credenciales SES son las que te proporciona el Ministerio del Interior para acceder a la plataforma **SES.HOSPEDAJES** y enviar las comunicaciones de viajeros.

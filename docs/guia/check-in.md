@@ -1,3 +1,8 @@
+---
+title: Enlace de check-in
+description: Cómo funcionan los enlaces de check-in individuales y grupales, qué datos rellena el huésped y qué documentos acepta el formulario.
+---
+
 # Enlace de check-in
 
 Cada huésped recibe un **enlace único** para completar su registro. No necesitan registrarse, instalar ninguna aplicación ni descargar nada — simplemente abren el enlace en su móvil o navegador.

@@ -1,3 +1,8 @@
+---
+title: Qué es RegistroViajero
+description: Introducción a RegistroViajero. Cómo funciona, qué resuelve y qué necesitas para empezar a cumplir con el Real Decreto 933/2021 en España.
+---
+
 # Qué es RegistroViajero
 
 RegistroViajero.com es una plataforma online que simplifica el cumplimiento del **Real Decreto 933/2021** para alojamientos turísticos en España. Permite recopilar los datos de los huéspedes, verificar sus documentos de identidad y enviar las comunicaciones obligatorias al Ministerio del Interior de forma automática.

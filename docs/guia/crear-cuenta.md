@@ -1,3 +1,8 @@
+---
+title: Crear tu cuenta
+description: Cómo registrarte en RegistroViajero, qué incluye el periodo de prueba de 15 días y cómo gestionar la seguridad y eliminación de tu cuenta.
+---
+
 # Crear tu cuenta
 
 ## Registro
@@ -9,9 +14,9 @@
 
 ## Periodo de prueba
 
-Al registrarte obtienes un **periodo de prueba gratuito de 15 días** con acceso ilimitado a alojamientos. No se requiere tarjeta de crédito.
+Al registrarte obtienes un **periodo de prueba gratuito de 15 días** con acceso completo. No se requiere tarjeta de crédito.
 
-Tras el periodo de prueba necesitas contratar el [plan Pro](/guia/facturacion) para seguir creando alojamientos.
+Tras el periodo de prueba necesitas contratar el [plan Pro](/guia/facturacion) para seguir enviando comunicaciones al Ministerio. Los enlaces de check-in de huéspedes nunca se bloquean por el estado de la suscripción.
 
 ## Seguridad de la cuenta
 
