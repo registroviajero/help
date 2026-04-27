@@ -1,6 +1,6 @@
 ---
 title: Problemas comunes
-description: "Soluciones a las incidencias más habituales al usar RegistroViajero: errores de envío, enlaces de check-in caducados, credenciales inválidas, reservas duplicadas y más."
+description: "Soluciones a las incidencias más habituales al usar RegistroViajero: errores de envío al Ministerio, enlaces de check-in caducados, credenciales inválidas, reservas duplicadas, edición bloqueada y más."
 ---
 
 # Problemas comunes
@@ -11,32 +11,31 @@ Listado de incidencias frecuentes y cómo resolverlas. Si tu problema no aparece
 
 ### El Ministerio rechaza la comunicación
 
-La reserva queda en estado **Error**. Abre la reserva para ver el código y la descripción devueltos por SES.HOSPEDAJES. Los más habituales están documentados en [Errores del Ministerio](/referencia/errores-ses).
+La reserva queda en estado **Error**. Abre la reserva para ver el mensaje devuelto. Los más habituales están documentados en [Errores del Ministerio](/referencia/errores-ses).
 
-Para corregir:
+Para corregir sin enviar una anulación:
 
-1. Identifica qué huésped o campo ha causado el rechazo.
-2. Corrige los datos (puede requerir que el huésped rellene de nuevo el formulario).
-3. Vuelve a validar la reserva.
-4. Reenvía al Ministerio.
+1. En la reserva, pulsa **Edición del huésped** para desbloquear la edición.
+2. Pide al huésped que corrija los datos (o corrígelos tú).
+3. Vuelve a validar y reenvía.
 
 ### "Credenciales no válidas" al enviar
 
 Casi siempre significa que:
 
 - El usuario, contraseña o código de arrendador están mal escritos.
-- La contraseña ha caducado o ha sido rotada en el portal del Ministerio.
+- La contraseña ha caducado o ha sido cambiada en el portal del Ministerio.
 - Las credenciales no tienen permisos de envío telemático habilitados.
 
-Comprueba los tres valores en **Configuración → Credenciales SES** y vuelve a intentarlo.
+Comprueba los tres valores en **Configuración → Credenciales SES** y usa **Probar conexión** para verificar antes de reenviar.
 
 ### El envío tarda en confirmarse
 
-El Ministerio consulta el estado del lote de forma asíncrona. Lo normal es ver el resultado (Confirmado o Error) en **menos de 5 minutos**. Si pasan más de 30 minutos sin confirmación, refresca la página y, si persiste, contacta con soporte.
+El Ministerio responde de forma asíncrona. Lo normal es ver el resultado (Confirmado o Error) en **menos de 5 minutos**. Si pasan más de 30 minutos sin confirmación, refresca la página y, si persiste, contacta con soporte.
 
-### Error "lote duplicado"
+### "Lote duplicado"
 
-Ocurre cuando se reenvía un lote que ya estaba en el sistema del Ministerio. RegistroViajero lo detecta y **gestiona la recuperación automáticamente** — no requiere acción por tu parte.
+Ocurre cuando un mismo envío llega dos veces al Ministerio (por ejemplo, tras una incidencia de red). RegistroViajero detecta el duplicado y **gestiona la recuperación automáticamente** — no requiere acción por tu parte.
 
 ## Check-in del huésped
 
@@ -44,24 +43,37 @@ Ocurre cuando se reenvía un lote que ya estaba en el sistema del Ministerio. Re
 
 Comprueba:
 
-- **Enlace correcto**: asegúrate de que el huésped está abriendo el enlace completo, incluido el token después de `/checkin/`.
-- **Enlace ya usado**: cada enlace es único por huésped. Si ya completó el check-in, volver a abrirlo muestra el resumen, no el formulario.
-- **Reserva cancelada**: si la reserva ha sido cancelada, el enlace se deshabilita.
+- **Enlace correcto:** asegúrate de que el huésped está abriendo el enlace completo, incluido el código que va después de `/checkin/`.
+- **Enlace ya usado:** cada enlace es único por huésped. Si ya completó el check-in, volver a abrirlo muestra el resumen, no el formulario.
+- **Reserva cancelada:** si la reserva ha sido cancelada, el enlace se deshabilita.
 
-### El huésped no puede subir la foto del documento
+### El huésped no encuentra dónde subir la foto del documento
 
-Las causas más comunes:
+RegistroViajero **no requiere fotos del DNI ni del pasaporte**. Solo se piden los datos textuales: tipo de documento, número y, cuando aplique, número de soporte. Si necesitas custodiar copias por motivos internos, hazlo fuera de la plataforma.
 
-- **Tamaño excesivo**: el sistema comprime automáticamente fotos grandes, pero archivos RAW o PDF muy pesados pueden fallar. Pide una foto desde el móvil.
-- **Formato no soportado**: se aceptan JPG, PNG, HEIC y PDF. Otros formatos (TIFF, BMP) no.
-- **Navegador antiguo**: los iPhones con iOS < 13 tienen problemas con HEIC. Pide al huésped que actualice o use JPG.
+### El huésped no puede firmar
+
+Aparece un mensaje como "**Falta un campo obligatorio para firmar**". Revisa lo siguiente según el tipo de documento:
+
+- **DNI o NIE** → falta el **apellido 2** o el **número de soporte**.
+- **Certificado de registro UE** → falta el **número de soporte**.
+- Edad menor de 14 años → los menores de 14 están exentos y no firman; añádelos como acompañantes del adulto responsable.
+
+### "Edición bloqueada" o "no puedes editar tus datos"
+
+La reserva ya no permite cambios desde el lado del huésped. Causas:
+
+- La reserva está en **Validado**, **Error**, **Enviado**, **Confirmado**, **Cancelado** o **Bloqueado**.
+- En **Validado** o **Error**, tú (admin) puedes desbloquear la edición desde la reserva (botón **Edición del huésped**).
+
+Más detalle en [Desbloquear edición del huésped](/guia/desbloquear-edicion-huesped).
 
 ### El huésped completa el formulario pero no se guarda
 
-Los datos se guardan en cada transición de paso. Si el huésped cierra el navegador a mitad de un paso sin avanzar, ese paso no queda guardado. Soluciones:
+Los datos se guardan al pasar al siguiente paso. Si el huésped cierra el navegador **a mitad de un paso** sin avanzar, ese paso no queda guardado (el resto sí). Soluciones:
 
 - Pide al huésped que complete al menos hasta el siguiente paso antes de cerrar.
-- Si el problema es recurrente, puede haber un bloqueador de cookies de terceros (el check-in no usa cookies de terceros, pero algunos ajustes muy restrictivos bloquean también el localStorage).
+- Si vuelve a entrar con el mismo enlace, retoma desde el último paso guardado.
 
 ## Reservas
 
@@ -73,14 +85,14 @@ Es comportamiento normal: Booking.com **no incluye** datos de huéspedes en el f
 
 Suele pasar cuando:
 
-- El mismo alojamiento tiene **dos feeds iCal** apuntando al mismo portal (p. ej., dos URLs de Booking para el mismo apartamento).
+- El mismo alojamiento tiene **dos feeds iCal** apuntando al mismo portal (por ejemplo, dos URLs de Booking para el mismo apartamento).
 - La reserva se creó manualmente y después entró también por iCal.
 
 Cancela una de las dos copias y, si es un problema de feeds, revisa **Alojamientos → Feeds de calendario** y elimina el duplicado.
 
 ### Una reserva cancelada en Booking sigue apareciendo
 
-Puede deberse al retraso de sincronización (hasta 30 minutos). Fuerza un **sync manual** desde la página del alojamiento. Si persiste, comprueba que la reserva está realmente cancelada en el extranet de Booking.
+El sync iCal corre cada **15 minutos**. Si una reserva sigue sin desaparecer, fuerza un sync manual desde la página del alojamiento. Si persiste, comprueba que la reserva está realmente cancelada en el extranet de Booking.
 
 ## Cuenta y equipo
 
@@ -90,12 +102,12 @@ Revisa la carpeta de spam. Si no está, desde el propio login puedes reenviar el
 
 ### No puedo acceder a Facturación
 
-Solo el rol **Propietario** puede gestionar la facturación. Administrador y Miembro no tienen acceso. Si necesitas cambiar de propietario, contacta con soporte.
+Solo el rol **Propietario** puede gestionar la facturación. Administrador y Miembro no tienen acceso. Si necesitas cambiar de Propietario, contacta con soporte.
 
 ### Un miembro del equipo no recibe notificaciones push
 
-- En **Brave**: Brave bloquea el servicio FCM de Google por defecto. Las notificaciones push no funcionan. Usa Chrome o Edge.
-- En **Safari iOS**: solo funcionan si la app está instalada como PWA desde la pantalla de inicio.
+- En **Brave**: las notificaciones push están bloqueadas por las restricciones de privacidad del navegador. Usa Chrome o Edge.
+- En **Safari iOS**: solo funcionan si la app está instalada como PWA desde la pantalla de inicio (ver [Instalar la app](/guia/instalar-pwa)).
 - En otros navegadores: comprueba que las notificaciones están permitidas para el dominio en la configuración del navegador.
 
 ## iCal

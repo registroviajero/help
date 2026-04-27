@@ -1,4 +1,5 @@
 import { defineConfig, type DefaultTheme, type HeadConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 import llmstxt from 'vitepress-plugin-llms'
 
 const SITE_URL = 'https://help.registroviajero.com'
@@ -71,12 +72,14 @@ function websiteSchema(locale: Locale) {
 const FAQS: Record<Locale, { q: string; a: string }[]> = {
   es: [
     { q: '¿Qué es el Real Decreto 933/2021?', a: 'Es la normativa española que obliga a los establecimientos de alojamiento turístico a comunicar los datos de sus huéspedes al Ministerio del Interior a través de la plataforma SES.HOSPEDAJES. RegistroViajero automatiza este proceso.' },
-    { q: '¿Necesito instalar algo?', a: 'No. RegistroViajero es una aplicación web. Solo necesitas un navegador actualizado (Chrome, Safari, Firefox o Edge). Opcionalmente puedes instalarla como PWA en tu dispositivo móvil.' },
+    { q: '¿Necesito instalar algo?', a: 'No. RegistroViajero es una aplicación web. Solo necesitas un navegador actualizado (Chrome, Safari, Firefox o Edge). Opcionalmente puedes instalarla como app en tu dispositivo móvil.' },
     { q: '¿Mis huéspedes necesitan crear una cuenta?', a: 'No. Cada huésped recibe un enlace único que abre directamente el formulario de check-in. No requiere registro, descarga ni instalación.' },
     { q: '¿En qué idiomas está el check-in?', a: 'El formulario de check-in está disponible en 9 idiomas: español, inglés, francés, alemán, italiano, portugués, gallego, euskera y catalán.' },
-    { q: '¿Qué documentos acepta?', a: 'Españoles: DNI o pasaporte. No españoles: pasaporte, NIE, certificado de registro UE, documento de identidad extranjero o documento de viaje.' },
+    { q: '¿Qué documentos acepta?', a: 'Españoles: DNI o pasaporte. No españoles: pasaporte, NIE, certificado de registro UE, documento de identidad extranjero o documento de viaje. DNI y NIE requieren además número de soporte y apellido 2; el certificado UE solo requiere número de soporte.' },
     { q: '¿Qué pasa con los menores de edad?', a: 'Los menores de 14 años están exentos de registro según el RD 933/2021. Los menores de 14 a 17 años deben completar el formulario e indicar su parentesco con un adulto de la misma reserva.' },
     { q: '¿Los datos del huésped se guardan si cierra el navegador?', a: 'Sí. Los datos se guardan automáticamente en cada paso. El huésped puede continuar más tarde abriendo el mismo enlace.' },
+    { q: '¿Puede el huésped editar sus datos después de firmar?', a: 'Sí, mientras la reserva no esté bloqueada. En la pantalla final tiene un botón Editar mis datos. Si la reserva ya está en Enviado, Confirmado, Cancelado o Bloqueado, el botón no aparece.' },
+    { q: '¿Puede un huésped reutilizar sus datos entre estancias?', a: 'Sí. Si vuelve a hospedarse y abre un nuevo enlace con el mismo número de documento, RegistroViajero detecta sus datos anteriores y le ofrece reutilizarlos en un solo clic.' },
     { q: '¿Cómo consigo las credenciales SES?', a: 'Las credenciales las proporciona el Ministerio del Interior. Contacta con la oficina de extranjería o comisaría de policía de tu zona.' },
     { q: '¿Puedo usar RegistroViajero sin credenciales SES?', a: 'Sí. Puedes gestionar reservas y recopilar datos de huéspedes sin credenciales. El envío al Ministerio se activa cuando las configures.' },
     { q: '¿Cuánto tiempo tengo para enviar el parte?', a: 'La normativa exige la comunicación en el momento del check-in o en las 24 horas siguientes al inicio del hospedaje. Enviar fuera de plazo puede calificarse como incumplimiento, incluso si se envía más tarde.' },
@@ -86,20 +89,23 @@ const FAQS: Record<Locale, { q: string; a: string }[]> = {
     { q: '¿Se bloquea el check-in si caduca mi plan?', a: 'No. Los huéspedes siempre pueden completar sus datos a través de los enlaces de check-in, independientemente del estado de tu suscripción.' },
     { q: '¿Puedo cancelar en cualquier momento?', a: 'Sí. Al cancelar, mantienes el acceso hasta el final del período pagado.' },
     { q: '¿Qué sanciones hay si no cumplo el RD 933/2021?', a: 'La omisión o inexactitud de la comunicación se tipifica como infracción leve (100–600 €) por la Ley Orgánica 4/2015 de Seguridad Ciudadana. Puede escalar a grave (601–30.000 €) o muy grave (30.001–600.000 €) por reiteración, volumen o conducta dolosa.' },
-    { q: '¿Qué plataformas son compatibles?', a: 'Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar y cualquier plataforma que exporte iCal (.ics).' },
+    { q: '¿Qué plataformas son compatibles?', a: 'Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, Holidu, Rentalia y cualquier plataforma que exporte iCal (.ics).' },
     { q: '¿Cada cuánto se sincronizan las reservas?', a: 'Automáticamente cada 15 minutos. También puedes forzar una sincronización manual en cualquier momento.' },
-    { q: '¿Cómo se protegen los datos?', a: 'Contraseñas cifradas con argon2id, credenciales SES cifradas con AES-256-GCM, comunicaciones por HTTPS/TLS, almacenamiento aislado por agencia y registro de auditoría inmutable.' },
+    { q: '¿Puedo instalar RegistroViajero como app en mi móvil?', a: 'Sí. En Android (Chrome o Edge) verás un banner para instalar al entrar al panel desde el móvil. En iPhone/iPad ve a Compartir → Añadir a pantalla de inicio desde Safari. Una vez instalada, podrás recibir notificaciones push del sistema operativo.' },
+    { q: '¿Cómo se protegen los datos?', a: 'Contraseñas y credenciales del Ministerio cifradas en nuestra base de datos, comunicaciones por HTTPS/TLS, almacenamiento aislado por agencia y registro de actividad inmutable.' },
     { q: '¿Cuánto tiempo se conservan los datos de huéspedes?', a: '3 años desde la fecha de salida, conforme al RD 933/2021. Transcurrido ese plazo, se eliminan automáticamente.' },
-    { q: '¿Puedo eliminar mi cuenta?', a: 'Sí. Desde Configuración → Perfil → Zona de peligro. Los datos personales se anonimizan y los registros de auditoría se conservan por cumplimiento legal.' },
+    { q: '¿Puedo eliminar mi cuenta?', a: 'Sí. Desde Configuración → Perfil → Zona de peligro. Los datos personales se anonimizan y los registros del histórico se conservan por cumplimiento legal.' },
   ],
   en: [
     { q: 'What is Royal Decree 933/2021?', a: 'It is the Spanish regulation that requires tourist accommodation establishments to report guest data to the Ministry of the Interior through the SES.HOSPEDAJES platform. RegistroViajero automates this process.' },
-    { q: 'Do I need to install anything?', a: 'No. RegistroViajero is a web application. You only need an up-to-date browser (Chrome, Safari, Firefox, or Edge). Optionally, you can install it as a PWA on your mobile device.' },
+    { q: 'Do I need to install anything?', a: 'No. RegistroViajero is a web application. You only need an up-to-date browser (Chrome, Safari, Firefox, or Edge). Optionally, you can install it as an app on your mobile device.' },
     { q: 'Do my guests need to create an account?', a: 'No. Each guest receives a unique link that opens the check-in form directly. No sign-up, download, or installation required.' },
     { q: 'What languages is check-in available in?', a: 'The guest check-in form is available in 9 languages: Spanish, English, French, German, Italian, Portuguese, Galician, Basque, and Catalan.' },
-    { q: 'Which documents does it accept?', a: 'Spanish citizens: DNI or passport. Non-Spanish: passport, NIE, EU registration certificate, foreign national ID, or travel document.' },
+    { q: 'Which documents does it accept?', a: 'Spanish citizens: DNI or passport. Non-Spanish: passport, NIE, EU registration certificate, foreign national ID, or travel document. DNI and NIE additionally require a support number and last name 2; the EU certificate only requires a support number.' },
     { q: 'What about minors?', a: 'Minors under 14 are exempt from registration under Royal Decree 933/2021. Those aged 14 to 17 must complete the form and declare their kinship with an adult on the same reservation.' },
     { q: 'Is guest data saved if they close the browser?', a: 'Yes. Data is saved automatically after each step. The guest can resume later by reopening the same link.' },
+    { q: 'Can the guest edit their data after signing?', a: 'Yes, while the reservation is not locked. On the final screen they have an Edit my information button. If the reservation is already in Sent, Confirmed, Cancelled, or Blocked, the button is hidden.' },
+    { q: 'Can a guest reuse their data across stays?', a: 'Yes. If they stay again and open a new link with the same document number, RegistroViajero detects their previous data and offers to reuse it with a single click.' },
     { q: 'How do I get SES credentials?', a: 'Credentials are issued by the Spanish Ministry of the Interior. Contact your local immigration office (oficina de extranjería) or police station.' },
     { q: 'Can I use RegistroViajero without SES credentials?', a: 'Yes. You can manage reservations and collect guest data without credentials. Ministry submission is enabled as soon as you configure them.' },
     { q: 'How long do I have to submit a guest report?', a: 'The regulation requires submission at the moment of check-in or within 24 hours of the start of the stay. Late submissions can still be qualified as non-compliance, even if sent later.' },
@@ -109,11 +115,12 @@ const FAQS: Record<Locale, { q: string; a: string }[]> = {
     { q: 'Is check-in blocked if my plan lapses?', a: 'No. Guests can always complete their data through the check-in links, regardless of your subscription status.' },
     { q: 'Can I cancel at any time?', a: 'Yes. When you cancel, you keep access until the end of the paid period.' },
     { q: 'What are the penalties for non-compliance with RD 933/2021?', a: 'Failure or inaccuracy in the submission is classified as a minor offense (€100–600) under Organic Law 4/2015 on Public Safety. It can escalate to serious (€601–30,000) or very serious (€30,001–600,000) for repeat offenses, volume, or willful misconduct.' },
-    { q: 'Which platforms are supported?', a: 'Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, and any platform that exports iCal (.ics).' },
+    { q: 'Which platforms are supported?', a: 'Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, Holidu, Rentalia, and any platform that exports iCal (.ics).' },
     { q: 'How often are reservations synced?', a: 'Automatically every 15 minutes. You can also trigger a manual sync at any time.' },
-    { q: 'How is data protected?', a: 'Passwords hashed with argon2id, SES credentials encrypted with AES-256-GCM, communications over HTTPS/TLS, agency-isolated storage, and an immutable audit log.' },
+    { q: 'Can I install RegistroViajero as an app on my phone?', a: 'Yes. On Android (Chrome or Edge) you will see a banner to install when you open the panel from your phone. On iPhone/iPad, go to Share → Add to Home Screen from Safari. Once installed, you can receive operating-system push notifications.' },
+    { q: 'How is data protected?', a: 'Passwords and Ministry credentials encrypted in our database, communications over HTTPS/TLS, agency-isolated storage, and an immutable activity log.' },
     { q: 'How long is guest data retained?', a: '3 years from the checkout date, as required by Royal Decree 933/2021. After that, data is deleted automatically.' },
-    { q: 'Can I delete my account?', a: 'Yes. From Settings → Profile → Danger zone. Personal data is anonymized; audit records are retained for legal compliance.' },
+    { q: 'Can I delete my account?', a: 'Yes. From Settings → Profile → Danger zone. Personal data is anonymized; activity records are retained for legal compliance.' },
   ],
 }
 
@@ -154,23 +161,32 @@ type PageKind = 'home' | 'faq' | 'guide' | 'reference'
 // (guia/facturacion ↔ en/guide/billing), so we can't derive one from the other.
 // Keep this in sync with the files in docs/ and docs/en/.
 const PAGE_ALTERNATES: Record<Locale, string>[] = [
-  { es: 'index.md',                      en: 'en/index.md' },
-  { es: 'faq.md',                        en: 'en/faq.md' },
-  { es: 'guia/index.md',                 en: 'en/guide/index.md' },
-  { es: 'guia/crear-cuenta.md',          en: 'en/guide/create-account.md' },
-  { es: 'guia/alojamientos.md',          en: 'en/guide/accommodations.md' },
-  { es: 'guia/credenciales-ses.md',      en: 'en/guide/ses-credentials.md' },
-  { es: 'guia/reservas.md',              en: 'en/guide/reservations.md' },
-  { es: 'guia/check-in.md',              en: 'en/guide/check-in.md' },
-  { es: 'guia/ical.md',                  en: 'en/guide/ical.md' },
-  { es: 'guia/enviar.md',                en: 'en/guide/submit.md' },
-  { es: 'guia/equipo.md',                en: 'en/guide/team.md' },
-  { es: 'guia/facturacion.md',           en: 'en/guide/billing.md' },
-  { es: 'guia/notificaciones.md',        en: 'en/guide/notifications.md' },
-  { es: 'guia/problemas-comunes.md',     en: 'en/guide/common-issues.md' },
-  { es: 'referencia/estados.md',         en: 'en/reference/states.md' },
-  { es: 'referencia/errores-ses.md',     en: 'en/reference/ses-errors.md' },
-  { es: 'referencia/sanciones.md',       en: 'en/reference/penalties.md' },
+  { es: 'index.md',                          en: 'en/index.md' },
+  { es: 'faq.md',                            en: 'en/faq.md' },
+  { es: 'guia/index.md',                     en: 'en/guide/index.md' },
+  { es: 'guia/crear-cuenta.md',              en: 'en/guide/create-account.md' },
+  { es: 'guia/alojamientos.md',              en: 'en/guide/accommodations.md' },
+  { es: 'guia/credenciales-ses.md',          en: 'en/guide/ses-credentials.md' },
+  { es: 'guia/probar-credenciales-ses.md',   en: 'en/guide/test-ses-connection.md' },
+  { es: 'guia/reservas.md',                  en: 'en/guide/reservations.md' },
+  { es: 'guia/check-in.md',                  en: 'en/guide/check-in.md' },
+  { es: 'guia/check-in-grupal.md',           en: 'en/guide/group-check-in.md' },
+  { es: 'guia/avisos-calidad-datos.md',      en: 'en/guide/data-quality-warnings.md' },
+  { es: 'guia/desbloquear-edicion-huesped.md', en: 'en/guide/admin-edit-lock-override.md' },
+  { es: 'guia/ical.md',                      en: 'en/guide/ical.md' },
+  { es: 'guia/reactivar-reserva.md',         en: 'en/guide/reactivate-cancelled-booking.md' },
+  { es: 'guia/enviar.md',                    en: 'en/guide/submit.md' },
+  { es: 'guia/equipo.md',                    en: 'en/guide/team.md' },
+  { es: 'guia/facturacion.md',               en: 'en/guide/billing.md' },
+  { es: 'guia/notificaciones.md',            en: 'en/guide/notifications.md' },
+  { es: 'guia/centro-notificaciones.md',     en: 'en/guide/notification-center.md' },
+  { es: 'guia/instalar-pwa.md',              en: 'en/guide/install-as-app.md' },
+  { es: 'guia/registro-actividad.md',        en: 'en/guide/activity-log.md' },
+  { es: 'guia/problemas-comunes.md',         en: 'en/guide/common-issues.md' },
+  { es: 'referencia/estados.md',             en: 'en/reference/states.md' },
+  { es: 'referencia/tipos-documento.md',     en: 'en/reference/document-types.md' },
+  { es: 'referencia/errores-ses.md',         en: 'en/reference/ses-errors.md' },
+  { es: 'referencia/sanciones.md',           en: 'en/reference/penalties.md' },
 ]
 
 const ALTERNATES_BY_PATH: Map<string, Record<Locale, string>> = (() => {
@@ -285,6 +301,7 @@ const esSidebar: DefaultTheme.Sidebar = [
       { text: 'Crear tu cuenta', link: '/guia/crear-cuenta' },
       { text: 'Añadir alojamientos', link: '/guia/alojamientos' },
       { text: 'Credenciales SES', link: '/guia/credenciales-ses' },
+      { text: 'Probar credenciales SES', link: '/guia/probar-credenciales-ses' },
     ],
   },
   {
@@ -292,7 +309,11 @@ const esSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: 'Crear reservas', link: '/guia/reservas' },
       { text: 'Enlace de check-in', link: '/guia/check-in' },
+      { text: 'Check-in en grupo', link: '/guia/check-in-grupal' },
+      { text: 'Avisos de calidad de datos', link: '/guia/avisos-calidad-datos' },
+      { text: 'Desbloquear edición del huésped', link: '/guia/desbloquear-edicion-huesped' },
       { text: 'Importar calendarios (iCal)', link: '/guia/ical' },
+      { text: 'Reactivar una reserva', link: '/guia/reactivar-reserva' },
       { text: 'Validar y enviar', link: '/guia/enviar' },
     ],
   },
@@ -302,6 +323,9 @@ const esSidebar: DefaultTheme.Sidebar = [
       { text: 'Equipo y roles', link: '/guia/equipo' },
       { text: 'Facturación', link: '/guia/facturacion' },
       { text: 'Notificaciones', link: '/guia/notificaciones' },
+      { text: 'Centro de notificaciones', link: '/guia/centro-notificaciones' },
+      { text: 'Instalar la app', link: '/guia/instalar-pwa' },
+      { text: 'Registro de actividad', link: '/guia/registro-actividad' },
     ],
   },
   {
@@ -313,6 +337,7 @@ const esSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: 'Preguntas frecuentes', link: '/faq' },
       { text: 'Estados de reserva', link: '/referencia/estados' },
+      { text: 'Tipos de documento', link: '/referencia/tipos-documento' },
       { text: 'Errores del Ministerio', link: '/referencia/errores-ses' },
       { text: 'Sanciones del RD 933/2021', link: '/referencia/sanciones' },
     ],
@@ -348,6 +373,7 @@ const enSidebar: DefaultTheme.Sidebar = [
       { text: 'Create your account', link: '/en/guide/create-account' },
       { text: 'Add accommodations', link: '/en/guide/accommodations' },
       { text: 'SES credentials', link: '/en/guide/ses-credentials' },
+      { text: 'Test SES credentials', link: '/en/guide/test-ses-connection' },
     ],
   },
   {
@@ -355,7 +381,11 @@ const enSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: 'Create reservations', link: '/en/guide/reservations' },
       { text: 'Check-in link', link: '/en/guide/check-in' },
+      { text: 'Group check-in', link: '/en/guide/group-check-in' },
+      { text: 'Data-quality warnings', link: '/en/guide/data-quality-warnings' },
+      { text: 'Admin edit-lock override', link: '/en/guide/admin-edit-lock-override' },
       { text: 'Import calendars (iCal)', link: '/en/guide/ical' },
+      { text: 'Reactivate a reservation', link: '/en/guide/reactivate-cancelled-booking' },
       { text: 'Validate and submit', link: '/en/guide/submit' },
     ],
   },
@@ -365,6 +395,9 @@ const enSidebar: DefaultTheme.Sidebar = [
       { text: 'Team and roles', link: '/en/guide/team' },
       { text: 'Billing', link: '/en/guide/billing' },
       { text: 'Notifications', link: '/en/guide/notifications' },
+      { text: 'Notification center', link: '/en/guide/notification-center' },
+      { text: 'Install the app', link: '/en/guide/install-as-app' },
+      { text: 'Activity log', link: '/en/guide/activity-log' },
     ],
   },
   {
@@ -376,6 +409,7 @@ const enSidebar: DefaultTheme.Sidebar = [
     items: [
       { text: 'Frequently asked questions', link: '/en/faq' },
       { text: 'Reservation states', link: '/en/reference/states' },
+      { text: 'Document types', link: '/en/reference/document-types' },
       { text: 'Ministry errors', link: '/en/reference/ses-errors' },
       { text: 'Penalties under RD 933/2021', link: '/en/reference/penalties' },
     ],
@@ -420,11 +454,27 @@ const sharedHead: HeadConfig[] = [
 
 const COPYRIGHT_YEAR = new Date().getFullYear()
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: SITE_TITLE.es,
   description: SITE_DESCRIPTION.es,
   cleanUrls: true,
   lastUpdated: true,
+
+  mermaid: {
+    theme: 'neutral',
+    themeVariables: {
+      primaryColor: '#dbeafe',
+      primaryTextColor: '#1e3a8a',
+      primaryBorderColor: '#2563eb',
+      lineColor: '#475569',
+      secondaryColor: '#f1f5f9',
+      tertiaryColor: '#f8fafc',
+      fontFamily:
+        'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    },
+    flowchart: { htmlLabels: true, curve: 'basis' },
+    sequence: { useMaxWidth: true, mirrorActors: false },
+  },
 
   sitemap: {
     hostname: SITE_URL,
@@ -566,4 +616,4 @@ export default defineConfig({
   vite: {
     plugins: [llmstxt()],
   },
-})
+}))

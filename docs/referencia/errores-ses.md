@@ -1,46 +1,49 @@
 ---
 title: Errores del Ministerio
-description: Errores habituales devueltos por SES.HOSPEDAJES al enviar un parte de viajeros y cómo resolver cada uno.
+description: Errores habituales devueltos por SES.HOSPEDAJES al enviar un parte de viajeros y cómo resolver cada uno sin tener que enviar una anulación.
 ---
 
 # Errores del Ministerio
 
-Cuando el Ministerio del Interior rechaza una comunicación a través de SES.HOSPEDAJES, RegistroViajero muestra el código de error y la descripción. Aquí encontrarás los errores más comunes y cómo resolverlos.
+Cuando el Ministerio del Interior rechaza una comunicación a través de SES.HOSPEDAJES, RegistroViajero muestra el mensaje devuelto en la reserva (estado **Error**). Aquí están los errores más comunes y cómo resolverlos.
 
-## Errores frecuentes
+## Errores en datos del huésped
 
-### Datos del huésped
-
-| Código | Descripción | Solución |
+| Mensaje | Causa | Solución |
 |--------|-------------|----------|
-| Documento inválido | El número de documento no es válido | Verifica que el número de documento del huésped sea correcto |
-| Fecha de nacimiento | La fecha de nacimiento no es coherente | Comprueba que la fecha esté en el formato correcto y sea una fecha real |
-| Nacionalidad | La nacionalidad no coincide con el tipo de documento | Un DNI solo puede pertenecer a un ciudadano español |
-| Número de soporte | Falta el número de soporte | Los titulares de DNI deben incluir el número de soporte (3 letras al dorso) |
-| Segundo apellido | Falta el segundo apellido | Obligatorio para DNI y NIE |
+| **Documento inválido** | El número del documento no pasa la validación. | Revisa el número con el huésped. Letra del DNI, secuencia del NIE, dígitos del pasaporte. |
+| **Fecha de nacimiento** | La fecha no es coherente o está fuera de rango. | Comprueba que la fecha esté completa y sea real (no años futuros, etc.). |
+| **Nacionalidad incompatible con el documento** | Por ejemplo, un DNI con nacionalidad no española. | Solo los ciudadanos españoles pueden usar DNI. Cambia a pasaporte si la nacionalidad es otra. |
+| **Falta el número de soporte** | Obligatorio para DNI, NIE y certificado UE. | Pide al huésped el número impreso al dorso de la tarjeta (junto al CAN en DNI 3.0). |
+| **Falta el apellido 2** | Obligatorio para DNI y NIE. | Solicítalo al huésped — la mayoría lo tiene en el documento. |
+| **Edad mínima no alcanzada** | Menor de 14 sin acompañante registrado correctamente. | Los menores de 14 están exentos del registro completo, deben constar como acompañantes del adulto responsable. |
 
-### Datos de la reserva
+## Errores en datos de la reserva
 
-| Código | Descripción | Solución |
+| Mensaje | Causa | Solución |
 |--------|-------------|----------|
-| Código de establecimiento | Código de establecimiento no válido | Verifica que el código asignado al alojamiento sea correcto |
-| Credenciales | Credenciales no válidas | Comprueba el usuario, contraseña y código de arrendador en las [credenciales SES](/guia/credenciales-ses) |
-| Fechas | Fechas de la reserva no válidas | La fecha de entrada debe ser anterior a la de salida |
-| Lote duplicado | El lote ya fue enviado previamente | RegistroViajero gestiona esta situación automáticamente |
+| **Código de establecimiento no válido** | El código del alojamiento no está reconocido por el Ministerio. | Verifica el código en **Alojamientos → Editar**. Debe coincidir exactamente con el asignado por el Ministerio. |
+| **Credenciales no válidas** | Usuario, contraseña o código de arrendador incorrectos. | Comprueba en **Configuración → Credenciales SES** y usa **Probar conexión**. Más detalle en [Probar credenciales](/guia/probar-credenciales-ses). |
+| **Fechas no válidas** | Entrada igual o posterior a salida, o fechas pasadas fuera de plazo. | La fecha de entrada debe ser anterior a la de salida y no estar fuera de los plazos del Ministerio. |
+| **Lote duplicado** | El envío ya estaba en el sistema del Ministerio. | RegistroViajero lo recupera automáticamente — no requiere acción. |
 
-## Cómo corregir un error
+## Cómo corregir un error sin anular
 
-1. Desde la reserva con error, revisa el mensaje de error del Ministerio
-2. Corrige los datos indicados (puede requerir que el huésped actualice su información)
-3. Vuelve a validar la reserva
-4. Envía de nuevo al Ministerio
+A diferencia de **Enviado** o **Confirmado**, una reserva en **Error** **no está bloqueada**. Para corregir:
+
+1. Abre la reserva con error.
+2. Pulsa **Edición del huésped** para desbloquear la edición (más detalle en [Desbloquear edición del huésped](/guia/desbloquear-edicion-huesped)).
+3. Pide al huésped que corrija el dato (o corrígelo tú).
+4. Vuelve a validar y reenviar.
+
+No hace falta enviar una anulación previa al Ministerio.
 
 ## Errores persistentes
 
 Si un error persiste después de corregir los datos, verifica:
 
-- Que las [credenciales SES](/guia/credenciales-ses) sean correctas y estén activas
-- Que el código de establecimiento del alojamiento sea el asignado por el Ministerio
-- Que la plataforma SES.HOSPEDAJES esté operativa (a veces hay mantenimientos programados)
+- Las [credenciales SES](/guia/credenciales-ses) usando **Probar conexión** (descarta problemas de credenciales).
+- Que el código de establecimiento del alojamiento sea el asignado por el Ministerio.
+- Que la plataforma SES.HOSPEDAJES esté operativa (a veces hay mantenimientos programados).
 
-Si el problema continúa, contacta con soporte.
+Si el problema continúa, contacta con soporte. Incluye el código y el mensaje exacto que devuelve el Ministerio.

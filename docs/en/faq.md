@@ -17,7 +17,7 @@ It is the Spanish regulation that requires tourist accommodation establishments 
 
 ### Do I need to install anything?
 
-No. RegistroViajero is a web application. You only need an up-to-date browser (Chrome, Safari, Firefox, or Edge). Optionally, you can install it as a PWA on your mobile device.
+No. RegistroViajero is a web application. You only need an up-to-date browser (Chrome, Safari, Firefox, or Edge). Optionally, you can [install it as an app](/en/guide/install-as-app) on your mobile device.
 
 ### Do my guests need to create an account?
 
@@ -31,8 +31,10 @@ The guest check-in form is available in 9 languages: Spanish, English, French, G
 
 ### Which documents does it accept?
 
-- **Spanish citizens:** DNI or passport
-- **Non-Spanish:** passport, NIE, EU registration certificate, foreign national ID, or travel document
+- **Spanish citizens:** DNI or passport.
+- **Non-Spanish:** passport, NIE, EU registration certificate, foreign national ID, or travel document.
+
+DNI and NIE additionally require a **support number** and **last name 2**. The EU certificate only requires a support number. Passport, foreign national ID, and travel document don't require a second last name or a support number.
 
 ### What about minors?
 
@@ -41,6 +43,14 @@ Minors under 14 are exempt from registration under Royal Decree 933/2021. Those 
 ### Is guest data saved if they close the browser?
 
 Yes. Data is saved automatically after each step. The guest can resume later by reopening the same link.
+
+### Can the guest edit their data after signing?
+
+Yes, while the reservation is not locked. On the final screen they have an **Edit my information** button. If the reservation is already in **Sent**, **Confirmed**, **Cancelled**, or **Blocked**, the button is hidden.
+
+### Can a guest reuse their data across stays?
+
+Yes. If they stay again and open a new link with the same document number, RegistroViajero detects their previous data and offers to reuse it with a single click.
 
 ## Submission to the Ministry
 
@@ -86,21 +96,26 @@ Failure or inaccuracy in the submission is classified as a minor offense (€100
 
 ### Which platforms are supported?
 
-Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, and any platform that exports iCal (.ics).
+Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, Holidu, Rentalia, and any platform that exports iCal (.ics).
 
 ### How often are reservations synced?
 
 Automatically every 15 minutes. You can also trigger a manual sync at any time.
 
+## Install as an app
+
+### Can I install RegistroViajero as an app on my phone?
+
+Yes. On **Android** (Chrome or Edge) you'll see a banner to install when you open the panel from your phone. On **iPhone/iPad**, go to **Share → Add to Home Screen** from Safari. Once installed, you can receive operating-system push notifications.
+
 ## Security and privacy
 
 ### How is data protected?
 
-- Passwords hashed with argon2id
-- SES credentials encrypted with AES-256-GCM
-- Communications over HTTPS/TLS
-- Agency-isolated storage
-- Immutable audit log
+- Passwords and Ministry credentials encrypted in our database.
+- Communications over HTTPS/TLS.
+- Agency-isolated storage: your agency never sees data from another.
+- Immutable activity log.
 
 ### How long is guest data retained?
 
@@ -108,4 +123,4 @@ Automatically every 15 minutes. You can also trigger a manual sync at any time.
 
 ### Can I delete my account?
 
-Yes. From **Settings → Profile → Danger zone**. Personal data is anonymized; audit records are retained for legal compliance.
+Yes. From **Settings → Profile → Danger zone**. Personal data is anonymized; activity records are retained for legal compliance.

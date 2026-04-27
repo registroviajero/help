@@ -13,7 +13,7 @@ Es la normativa española que obliga a los establecimientos de alojamiento turí
 
 ### ¿Necesito instalar algo?
 
-No. RegistroViajero es una aplicación web. Solo necesitas un navegador actualizado (Chrome, Safari, Firefox o Edge). Opcionalmente puedes instalarla como PWA en tu dispositivo móvil.
+No. RegistroViajero es una aplicación web. Solo necesitas un navegador actualizado (Chrome, Safari, Firefox o Edge). Opcionalmente puedes [instalarla como app](/guia/instalar-pwa) en tu dispositivo móvil.
 
 ### ¿Mis huéspedes necesitan crear una cuenta?
 
@@ -27,8 +27,10 @@ El formulario de check-in está disponible en 9 idiomas: español, inglés, fran
 
 ### ¿Qué documentos acepta?
 
-- **Españoles:** DNI o pasaporte
-- **No españoles:** pasaporte, NIE, certificado de registro UE, documento de identidad extranjero o documento de viaje
+- **Españoles:** DNI o pasaporte.
+- **No españoles:** pasaporte, NIE, certificado de registro UE, documento de identidad extranjero o documento de viaje.
+
+DNI y NIE requieren además **número de soporte** y **apellido 2**. El certificado UE solo requiere número de soporte. Pasaporte, documento extranjero y documento de viaje no piden apellido 2 ni número de soporte.
 
 ### ¿Qué pasa con los menores de edad?
 
@@ -37,6 +39,14 @@ Los menores de 14 años están exentos de registro según el RD 933/2021. Los me
 ### ¿Los datos del huésped se guardan si cierra el navegador?
 
 Sí. Los datos se guardan automáticamente en cada paso. El huésped puede continuar más tarde abriendo el mismo enlace.
+
+### ¿Puede el huésped editar sus datos después de firmar?
+
+Sí, mientras la reserva no esté bloqueada. En la pantalla final tiene un botón **Editar mis datos**. Si la reserva ya está en **Enviado**, **Confirmado**, **Cancelado** o **Bloqueado**, el botón no aparece.
+
+### ¿Puede un huésped reutilizar sus datos entre estancias?
+
+Sí. Si vuelve a hospedarse y abre un nuevo enlace con el mismo número de documento, RegistroViajero detecta sus datos anteriores y le ofrece reutilizarlos en un solo clic.
 
 ## Envío al Ministerio
 
@@ -82,21 +92,26 @@ La omisión o inexactitud de la comunicación se tipifica como infracción leve 
 
 ### ¿Qué plataformas son compatibles?
 
-Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar y cualquier plataforma que exporte iCal (.ics).
+Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, Holidu, Rentalia y cualquier plataforma que exporte iCal (.ics).
 
 ### ¿Cada cuánto se sincronizan las reservas?
 
 Automáticamente cada 15 minutos. También puedes forzar una sincronización manual en cualquier momento.
 
+## Instalación como app
+
+### ¿Puedo instalar RegistroViajero como app en mi móvil?
+
+Sí. En **Android** (Chrome o Edge) verás un banner para instalar al entrar al panel desde el móvil. En **iPhone/iPad** ve a **Compartir → Añadir a pantalla de inicio** desde Safari. Una vez instalada, podrás recibir notificaciones push del sistema operativo.
+
 ## Seguridad y privacidad
 
 ### ¿Cómo se protegen los datos?
 
-- Contraseñas cifradas con argon2id
-- Credenciales SES cifradas con AES-256-GCM
-- Comunicaciones por HTTPS/TLS
-- Almacenamiento aislado por agencia
-- Registro de auditoría inmutable
+- Contraseñas y credenciales del Ministerio cifradas en nuestra base de datos.
+- Comunicaciones por HTTPS/TLS.
+- Almacenamiento aislado por agencia: tu agencia nunca ve datos de otra.
+- Registro de actividad inmutable.
 
 ### ¿Cuánto tiempo se conservan los datos de huéspedes?
 
@@ -104,4 +119,4 @@ Automáticamente cada 15 minutos. También puedes forzar una sincronización man
 
 ### ¿Puedo eliminar mi cuenta?
 
-Sí. Desde **Configuración → Perfil → Zona de peligro**. Los datos personales se anonimizan y los registros de auditoría se conservan por cumplimiento legal.
+Sí. Desde **Configuración → Perfil → Zona de peligro**. Los datos personales se anonimizan y los registros del histórico se conservan por cumplimiento legal.

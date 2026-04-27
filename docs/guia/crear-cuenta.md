@@ -25,6 +25,10 @@ Tras el periodo de prueba necesitas contratar el [plan Pro](/guia/facturacion) p
 - Si olvidas tu contraseña, usa la opción **¿Has olvidado tu contraseña?** en la pantalla de inicio de sesión
 - Al cambiar tu contraseña, todas las sesiones activas se invalidan automáticamente
 
+## Cerrar sesión
+
+El botón **Cerrar sesión** está en **Configuración → Perfil → Zona de peligro**. Cerrar sesión solo desconecta este dispositivo — tus datos no se eliminan y puedes volver a entrar en cualquier momento.
+
 ## Eliminar tu cuenta
 
-Puedes eliminar tu cuenta desde **Configuración → Perfil → Zona de peligro**. Tendrás que escribir `DELETE` para confirmar. Los datos personales se anonimizan y los registros de auditoría se conservan por cumplimiento legal.
+Puedes eliminar tu cuenta desde **Configuración → Perfil → Zona de peligro**. Tendrás que escribir `DELETE` para confirmar. Los datos personales se anonimizan y los registros del histórico se conservan por cumplimiento legal.

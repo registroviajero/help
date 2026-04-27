@@ -1,6 +1,6 @@
 ---
 title: Common issues
-description: "Solutions to the most frequent issues when using RegistroViajero: submission errors, expired check-in links, invalid credentials, duplicate reservations, and more."
+description: "Solutions to the most frequent issues when using RegistroViajero: Ministry submission errors, expired check-in links, invalid credentials, duplicate reservations, edit lock, and more."
 ---
 
 ::: info Reference translation
@@ -9,38 +9,37 @@ This page is a courtesy translation. The [Spanish version](/guia/problemas-comun
 
 # Common issues
 
-A catalogue of frequent issues and how to resolve them. If your problem isn't listed here, contact support.
+Most frequent issues and how to fix them. If your case isn't listed, contact support.
 
-## Submission to the Ministry
+## Ministry submission
 
-### The Ministry rejects the submission
+### The Ministry rejects the report
 
-The reservation goes into the **Error** state. Open it to see the code and description returned by SES.HOSPEDAJES. The most common ones are documented in [Ministry errors](/en/reference/ses-errors).
+The reservation goes into **Error** state. Open it to see the message returned. The most common ones are documented in [Ministry errors](/en/reference/ses-errors).
 
-To fix it:
+To fix without filing a cancellation:
 
-1. Identify which guest or field caused the rejection.
-2. Correct the data (this may require the guest to fill the form again).
-3. Re-validate the reservation.
-4. Resubmit to the Ministry.
+1. On the reservation, click **Guest editing** to unlock guest editing.
+2. Ask the guest to correct the data (or correct it yourself).
+3. Validate again and resubmit.
 
-### "Invalid credentials" on submission
+### "Invalid credentials" when submitting
 
-It almost always means one of:
+Almost always means:
 
-- The username, password, or lessor code is mistyped.
-- The password has expired or was rotated on the Ministry portal.
-- The credentials don't have telematic submission permissions enabled.
+- The username, password, or lessor code is wrong.
+- The password has expired or has been changed in the Ministry portal.
+- The credentials don't have telematic submission enabled.
 
-Check all three values at **Settings → SES credentials** and try again.
+Check the three values in **Settings → SES credentials** and use **Test connection** to verify before resubmitting.
 
-### Submission takes a long time to confirm
+### Submission takes too long to confirm
 
-The Ministry polls the batch status asynchronously. You'll normally see the result (Confirmed or Error) in **under 5 minutes**. If more than 30 minutes pass without confirmation, refresh the page, and if it persists, contact support.
+The Ministry responds asynchronously. You normally see the result (Confirmed or Error) in **less than 5 minutes**. If more than 30 minutes pass without confirmation, refresh the page and contact support if it persists.
 
-### "Duplicate batch" error
+### "Duplicate batch"
 
-This happens when a batch is re-submitted that is already in the Ministry's system. RegistroViajero detects it and **handles recovery automatically** — no action needed on your side.
+Happens when the same submission reaches the Ministry twice (for example, after a network blip). RegistroViajero detects the duplicate and **handles recovery automatically** — no action required.
 
 ## Guest check-in
 
@@ -48,93 +47,106 @@ This happens when a batch is re-submitted that is already in the Ministry's syst
 
 Check:
 
-- **Correct link:** make sure the guest is opening the full link, including the token after `/checkin/`.
-- **Already used:** each link is unique per guest. If they already completed check-in, reopening it shows the summary, not the form.
-- **Reservation cancelled:** if the reservation has been cancelled, the link is disabled.
+- **Correct link:** make sure the guest opens the full link, including the code after `/checkin/`.
+- **Already used:** each link is unique per guest. If they have already completed check-in, reopening it shows the summary, not the form.
+- **Cancelled reservation:** if the reservation is cancelled, the link is disabled.
 
-### The guest can't upload the document photo
+### The guest can't find where to upload the document photo
 
-Most common causes:
+RegistroViajero **does not require photos of the DNI or passport**. Only textual data is collected: document type, number, and support number when applicable. If you need to keep ID copies for internal reasons, do so outside the platform.
 
-- **File too large:** the system auto-compresses large photos, but very heavy RAW or PDF files may fail. Ask for a phone photo.
-- **Unsupported format:** JPG, PNG, HEIC, and PDF are accepted. Others (TIFF, BMP) are not.
-- **Old browser:** iPhones with iOS < 13 have issues with HEIC. Ask the guest to update or use JPG.
+### The guest can't sign
 
-### The guest completes the form but it isn't saved
+A message appears like "**A required field is missing for signature**". Check the following depending on the document type:
 
-Data is saved at each step transition. If the guest closes the browser mid-step without advancing, that step is not saved. Solutions:
+- **DNI or NIE** → missing **last name 2** or **support number**.
+- **EU registration certificate** → missing **support number**.
+- Age under 14 → minors under 14 are exempt and don't sign; add them as accompanied by the responsible adult.
 
-- Ask the guest to complete at least up to the next step before closing.
-- If the issue is recurring, a third-party cookie blocker may be interfering (check-in doesn't use third-party cookies, but very strict settings can also block localStorage).
+### "Editing locked" or "you cannot edit your data"
+
+The reservation no longer accepts changes from the guest side. Causes:
+
+- The reservation is in **Validated**, **Error**, **Sent**, **Confirmed**, **Cancelled**, or **Blocked**.
+- In **Validated** or **Error**, you (admin) can unlock guest editing from the reservation (**Guest editing** button).
+
+More detail in [Admin edit-lock override](/en/guide/admin-edit-lock-override).
+
+### The guest fills in the form but it isn't saved
+
+Data is saved when moving to the next step. If the guest closes the browser **mid-step** without advancing, that step isn't saved (the rest are). Solutions:
+
+- Ask the guest to complete at least to the next step before closing.
+- If they reopen the same link, they pick up at the last saved step.
 
 ## Reservations
 
 ### A reservation imported from Booking has no guest name
 
-This is normal behaviour: Booking.com **does not include** guest data in its iCal feed for privacy reasons. From the reservation, add guests manually and send them the check-in link.
+This is normal: Booking.com **does not include** guest data in the iCal feed for privacy reasons. From the reservation, add guests manually and send their check-in links.
 
-### A reservation appears twice
+### A reservation is duplicated
 
-This usually happens when:
+Usually happens when:
 
 - The same accommodation has **two iCal feeds** pointing to the same portal (e.g., two Booking URLs for the same apartment).
-- The reservation was created manually and then also came in via iCal.
+- The reservation was created manually and later imported via iCal too.
 
-Cancel one of the two copies, and if it's a feeds issue, review **Accommodations → Calendar feeds** and remove the duplicate.
+Cancel one of the two copies. If it's a feed issue, check **Accommodations → Calendar feeds** and remove the duplicate.
 
-### A reservation cancelled in Booking still appears
+### A reservation cancelled on Booking still shows up
 
-It may be a sync delay (up to 30 minutes). Force a **manual sync** from the accommodation page. If it persists, check that the reservation is actually cancelled in the Booking extranet.
+The iCal sync runs every **15 minutes**. If a reservation persists, force a manual sync from the accommodation page. If it still shows up, verify the reservation is actually cancelled in the Booking extranet.
 
 ## Account and team
 
-### I'm not receiving the verification email
+### I'm not getting the verification email
 
-Check the spam folder. If it's not there, you can resend the email from the login page. If it persists, verify that the recipient's domain isn't blocking emails from `registroviajero.com`.
+Check your spam folder. If it's not there, you can resend the email from the login screen. If it persists, check that the recipient's domain isn't blocking emails from `registroviajero.com`.
 
 ### I can't access Billing
 
-Only the **Owner** role can manage billing. Administrator and Member cannot access it. If you need to change ownership, contact support.
+Only the **Owner** role can manage billing. Administrator and Member roles don't have access. To transfer ownership, contact support.
 
 ### A team member doesn't get push notifications
 
-- On **Brave:** Brave blocks Google's FCM service by default. Push notifications don't work. Use Chrome or Edge.
-- On **Safari iOS:** push only works if the app is installed as a PWA from the home screen.
-- On other browsers: check that notifications are allowed for the domain in the browser settings.
+- In **Brave**: push notifications are blocked by the browser's privacy restrictions. Use Chrome or Edge.
+- On **Safari iOS**: only works if the app is installed as a PWA from the home screen (see [Install the app](/en/guide/install-as-app)).
+- In other browsers: check that notifications are allowed for the domain in the browser settings.
 
 ## iCal
 
 ### The feed fails with "404"
 
-The source portal has regenerated the iCal URL (common after a password change). Log in to the portal, copy the new URL, and update the feed in RegistroViajero.
+The source portal has regenerated the iCal URL (common after a password change). Sign in to the portal, copy the new URL, and update the feed in RegistroViajero.
 
-### Reservations appear with wrong dates
+### Reservations show wrong dates
 
 Some portals publish the end date as "the day after checkout" and others as "the same day". RegistroViajero normalizes this, but if you see an extra night, check:
 
-- That the accommodation's time zone is correct.
-- That the reservation on the source portal is entered correctly.
+- That the accommodation's timezone is correct.
+- That the reservation in the source portal is correctly entered.
 
 ## Billing
 
 ### When am I charged?
 
-The first charge happens at the end of the 15-day trial, unless you cancel before. After that, billing is monthly on the same date. Polar handles the payments.
+The first charge happens at the end of the 15-day trial unless you cancel beforehand. After that, you are billed monthly on the same day. Polar handles the payment.
 
-### I activated or deactivated an accommodation and don't see the amount updated
+### I activated or deactivated an accommodation and don't see the amount adjusted
 
-Changes in the number of active accommodations are prorated automatically and reflected on your next invoice. You can preview the upcoming invoice at **Settings → Billing**.
+Changes in the number of active accommodations are prorated automatically and shown on the next invoice. You can preview the upcoming invoice in **Settings → Billing**.
 
-### I cancelled but I still have access to the account
+### I cancelled but I still have access
 
-When you cancel, you **keep access until the end of the paid period**. After that, the account becomes read-only and you won't be able to submit new reports to the Ministry. Guest check-in links keep working.
+When you cancel, **you keep access until the end of the paid period**. Once the period ends, the account becomes read-only and you can't submit new Ministry reports. Check-in links keep working for guests.
 
 ## Still not working
 
-If your issue isn't in this list or the solutions don't resolve it, contact support. Include in your message:
+If your problem isn't listed or the suggestions don't solve it, contact support with:
 
 - Your account **email**.
 - The affected **accommodation name** (if applicable).
 - A specific **reservation code** (if applicable).
-- The approximate **time** when the issue happened.
+- The **approximate time** of the issue.
 - The **browser and operating system** you were using.

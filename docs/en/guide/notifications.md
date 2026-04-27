@@ -1,6 +1,6 @@
 ---
 title: Notifications
-description: Notification types emitted by RegistroViajero, available channels (in-app and push), and how to configure your preferences.
+description: Notification types, channels (in-app and OS push), grouping by reservation, smart de-duplication, and 30-day automatic cleanup.
 ---
 
 ::: info Reference translation
@@ -9,30 +9,57 @@ This page is a courtesy translation. The [Spanish version](/guia/notificaciones)
 
 # Notifications
 
-RegistroViajero keeps you informed about activity on your reservations and your team.
+RegistroViajero keeps you informed about activity on your reservations and team. Delivery is **smart**: if you have the app open, you get the notification inside the app; if not, it arrives as an operating-system notification. You never get both for the same event.
 
 ## Notification types
 
-- **Guest completed check-in** (`guest_completed`) — a guest has finished filling in their data
-- **Ministry confirmation** (`submission_confirmed`) — the report was accepted by SES.HOSPEDAJES
-- **Ministry error** (`submission_error`) — the report was rejected
-- **New team member** (`team_member_joined`) — someone accepted an invitation to your team
-- **Reservation created** (`registration_created`) — a new reservation was created (manual or imported)
+| Type | When it fires |
+|---|---|
+| **Guest completed check-in** | A guest has finished every step and signed. |
+| **Guest reopened editing** | A guest has clicked **Edit my information** after completing — the reservation goes back to Pending. |
+| **Ministry confirmation** | The Ministry has accepted the submission. |
+| **Ministry error** | The Ministry has rejected the submission. |
+| **New team member** | Someone has accepted a team invitation. |
+| **Reservation created** | A new reservation was created (manually or imported via iCal). |
 
 ## Channels
 
-### In-app notifications
+### Inside the app
 
-Notifications appear in the bell icon on the admin panel. They are grouped by reservation to make reading easier.
+Shown in the **bell** icon of the admin panel. They are grouped by reservation: several actions on the same reservation appear as a single grouped entry. Marking a grouped entry as read marks them all.
 
-### Push notifications
+### OS push
 
-If you install the app as a PWA (Progressive Web App) on your device, you can receive OS-level push notifications even when the app isn't open.
+If you install the app on your device (see [Install the app](/en/guide/install-as-app)), you can receive operating-system push notifications even when the app is not open. On iOS, push only works once the app is installed to the home screen.
 
-::: warning
-Push notifications don't work in the Brave browser due to its restrictions on Google's FCM service. Use Chrome or Edge to receive them.
+::: warning Brave blocks push
+Push notifications do not work in **Brave** because of its privacy restrictions. Use Chrome or Edge if you need push.
 :::
+
+## How duplicates are avoided
+
+```mermaid
+flowchart LR
+  E[Event] --> WS{Is the app<br/>open?}
+  WS -- Yes --> InApp[Bell inside the app]
+  WS -- No --> Push[OS push notification]
+```
+
+Each event is delivered through **a single channel**. If you have the app open in a tab, notifications appear in the bell and never duplicate as OS push.
+
+## Grouping
+
+Related notifications are grouped. For example, if three guests on the same reservation sign back-to-back, you'll see one grouped entry in the bell instead of three. If a more recent event comes in for the same reservation (for instance, a guest reopening their edits), the previous entries un-group so you can see the change.
 
 ## Preferences
 
-From **Settings → Notifications** you can enable or disable each notification type individually. New types are enabled by default.
+In **Settings → Notifications** you can toggle each notification type **independently**. Disabling **Guest completed check-in** does not affect **Guest reopened editing** or any other type. New types are enabled by default when introduced.
+
+Each user manages their own preferences — they are not agency-wide.
+
+## Automatic cleanup
+
+- Notifications are automatically deleted after **30 days**.
+- OS push subscriptions that have not been used for **90 days** are removed from the server.
+
+This cleanup runs in the background; no action is required.
