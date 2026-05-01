@@ -22,7 +22,7 @@ flowchart TB
   E --> P[Reservation returns<br/>to Pending]
 
   S[Sent] --> W[Wait for the Ministry<br/>response]
-  C[Confirmed] -.->|Cancel with Ministry first| A[Archived]
+  C[Confirmed] -. "Cancel with Ministry first" .-> A[Archived]
   B[Blocked] --> L[Editing unavailable]
 
   classDef canEdit fill:#ecfdf5,stroke:#059669,color:#064e3b,stroke-width:2px;

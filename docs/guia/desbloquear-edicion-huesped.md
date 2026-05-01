@@ -18,7 +18,7 @@ flowchart TB
   E --> P[La reserva vuelve<br/>a Pendiente]
 
   S[Enviado] --> W[Espera la respuesta<br/>del Ministerio]
-  C[Confirmado] -.->|Antes debes anular| A[Archivada]
+  C[Confirmado] -. "Antes debes anular" .-> A[Archivada]
   B[Bloqueado] --> L[Edición no disponible]
 
   classDef canEdit fill:#ecfdf5,stroke:#059669,color:#064e3b,stroke-width:2px;
