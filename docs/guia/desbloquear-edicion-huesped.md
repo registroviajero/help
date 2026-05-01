@@ -12,23 +12,24 @@ Pero a veces necesitas exactamente eso: que un huésped corrija su número de do
 ## Cuándo se puede desbloquear
 
 ```mermaid
-flowchart TB
-  V[Validado] -->|Puedes abrir edición| E[Huésped corrige<br/>y firma de nuevo]
-  ER[Error] -->|Puedes abrir edición| E
-  E --> P[La reserva vuelve<br/>a Pendiente]
+flowchart TD
+  P[Pendiente] --> CP[Completado<br/>por huéspedes]
+  CP --> V[Validado]
+  V --> S[Enviado]
+  S --> C[Confirmado]
+  S --> ER[Error]
 
-  S[Enviado] --> W[Espera la respuesta<br/>del Ministerio]
-  C[Confirmado] -. "Antes debes anular" .-> A[Archivada]
-  B[Bloqueado] --> L[Edición no disponible]
+  V -->|Abrir edición| E[Huésped corrige<br/>y firma de nuevo]
+  ER -->|Abrir edición| E
+  E -->|Vuelve a empezar| P
+  C -. Requiere anulación .-> A[Archivada]
 
-  classDef canEdit fill:#ecfdf5,stroke:#059669,color:#064e3b,stroke-width:2px;
+  classDef editable fill:#dcfce7,stroke:#16a34a,color:#166534,stroke-width:2px;
+  classDef locked fill:#fee2e2,stroke:#dc2626,color:#991b1b,stroke-width:2px;
   classDef action fill:#eff6ff,stroke:#2563eb,color:#1e3a8a,stroke-width:2px;
-  classDef locked fill:#fff7ed,stroke:#ea580c,color:#7c2d12,stroke-width:2px;
-  classDef terminal fill:#fef2f2,stroke:#dc2626,color:#7f1d1d,stroke-width:2px;
-  class V,ER canEdit;
-  class E,P action;
-  class S,W,B,L locked;
-  class C,A terminal;
+  class V,ER editable;
+  class C,A locked;
+  class E action;
 ```
 
 Solo puedes activar el botón **Edición del huésped** en estos estados:

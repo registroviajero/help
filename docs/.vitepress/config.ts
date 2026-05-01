@@ -469,15 +469,12 @@ export default withMermaid(defineConfig({
   mermaid: {
     theme: 'neutral',
     themeVariables: {
-      primaryColor: 'var(--rv-mermaid-node-bg)',
-      primaryTextColor: 'var(--rv-mermaid-text)',
-      primaryBorderColor: 'var(--rv-mermaid-border)',
-      lineColor: 'var(--rv-mermaid-line)',
-      secondaryColor: 'var(--rv-mermaid-node-bg)',
-      tertiaryColor: 'var(--rv-mermaid-label-bg)',
-      edgeLabelBackground: 'var(--rv-mermaid-label-bg)',
-      clusterBkg: 'var(--rv-mermaid-cluster-bg)',
-      clusterBorder: 'var(--rv-mermaid-border)',
+      primaryColor: '#dbeafe',
+      primaryTextColor: '#1e3a8a',
+      primaryBorderColor: '#2563eb',
+      lineColor: '#475569',
+      secondaryColor: '#f1f5f9',
+      tertiaryColor: '#f8fafc',
       fontFamily:
         'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     },

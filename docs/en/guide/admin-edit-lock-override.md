@@ -16,23 +16,24 @@ But sometimes that's exactly what you need: a guest correcting their document nu
 ## When you can unlock
 
 ```mermaid
-flowchart TB
-  V[Validated] -->|You can open editing| E[Guest fixes data<br/>and signs again]
-  ER[Error] -->|You can open editing| E
-  E --> P[Reservation returns<br/>to Pending]
+flowchart TD
+  P[Pending] --> CP[Guest<br/>completed]
+  CP --> V[Validated]
+  V --> S[Sent]
+  S --> C[Confirmed]
+  S --> ER[Error]
 
-  S[Sent] --> W[Wait for the Ministry<br/>response]
-  C[Confirmed] -. "Cancel with Ministry first" .-> A[Archived]
-  B[Blocked] --> L[Editing unavailable]
+  V -->|Open editing| E[Guest fixes data<br/>and signs again]
+  ER -->|Open editing| E
+  E -->|Starts over| P
+  C -. Cancellation required .-> A[Archived]
 
-  classDef canEdit fill:#ecfdf5,stroke:#059669,color:#064e3b,stroke-width:2px;
+  classDef editable fill:#dcfce7,stroke:#16a34a,color:#166534,stroke-width:2px;
+  classDef locked fill:#fee2e2,stroke:#dc2626,color:#991b1b,stroke-width:2px;
   classDef action fill:#eff6ff,stroke:#2563eb,color:#1e3a8a,stroke-width:2px;
-  classDef locked fill:#fff7ed,stroke:#ea580c,color:#7c2d12,stroke-width:2px;
-  classDef terminal fill:#fef2f2,stroke:#dc2626,color:#7f1d1d,stroke-width:2px;
-  class V,ER canEdit;
-  class E,P action;
-  class S,W,B,L locked;
-  class C,A terminal;
+  class V,ER editable;
+  class C,A locked;
+  class E action;
 ```
 
 You can flip the **Guest editing** switch only in these states:
