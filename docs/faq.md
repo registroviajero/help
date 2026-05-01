@@ -42,7 +42,7 @@ Sí. Los datos se guardan automáticamente en cada paso. El huésped puede conti
 
 ### ¿Puede el huésped editar sus datos después de firmar?
 
-Sí, mientras la reserva no esté bloqueada. En la pantalla final tiene un botón **Editar mis datos**. Si la reserva ya está en **Enviado**, **Confirmado**, **Cancelado** o **Bloqueado**, el botón no aparece.
+Sí, mientras la reserva no esté bloqueada. En la pantalla final tiene un botón **Editar mis datos**. Si la reserva ya está en **Enviado**, **Confirmado**, **Archivada** o **Bloqueado**, el botón no aparece.
 
 ### ¿Puede un huésped reutilizar sus datos entre estancias?
 

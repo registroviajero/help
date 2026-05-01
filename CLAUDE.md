@@ -43,11 +43,20 @@ docs/
 │   ├── credenciales-ses.md
 │   ├── reservas.md
 │   ├── check-in.md
+│   ├── check-in-grupal.md
+│   ├── avisos-calidad-datos.md
+│   ├── desbloquear-edicion-huesped.md
 │   ├── ical.md
+│   ├── reactivar-reserva.md
+│   ├── revisar-reserva.md
 │   ├── enviar.md
+│   ├── corregir-rechazo-ministerio.md
 │   ├── equipo.md
 │   ├── facturacion.md
 │   ├── notificaciones.md
+│   ├── centro-notificaciones.md
+│   ├── instalar-pwa.md
+│   ├── registro-actividad.md
 │   └── problemas-comunes.md  # Troubleshooting reference
 ├── referencia/               # Dense reference tables
 │   ├── estados.md
@@ -110,7 +119,8 @@ docs/
 - **Admin locales: 2.** Spanish + English (not listed publicly as a feature).
 - **Geographic coverage:** SES.HOSPEDAJES only. **Cataluña** (Mossos d'Esquadra) and **País Vasco** (Ertzaintza) are **not** supported yet. Do not imply otherwise.
 - **Billing:** 5 €/alojamiento/mes, **no minimum** (you pay only for active accommodations). The 15-day trial has no credit-card requirement. Internally the app stores this as "seats" with a `SEAT_LIMIT` error code and a 2-seat trial default, but user-facing copy always says "alojamiento" / "accommodation" to match the marketing site. Billed via Polar. Guest check-in is **never** blocked by subscription state — even an expired plan lets guests complete their links.
-- **iCal sources:** Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, plus any `.ics` feed. Sync interval: every 15 minutes + manual.
+- **iCal sources:** Booking.com, Airbnb, VRBO, Expedia, Tripadvisor, Google Calendar, Holidu, Rentalia, plus any `.ics` feed. Sync interval: every 15 minutes + manual. If an iCal-imported reservation is reactivated after being archived, it is detached from the source iCal calendar so later syncs no longer archive it again or update its dates.
+- **Reservation state terminology:** The app uses **Archivada / Archived** for reservations that are no longer active (manual archive, OTA cancellation via iCal, or Ministry annulment). Do not document a reservation state as **Cancelada / Cancelled**. Use cancellation only for the guest/OTA/subscription action or the Ministry annulment/cancellation process.
 - **Retention:** 3 years per RD 933/2021, auto-deleted after that. Audit log is preserved (immutable) for legal compliance.
 - **Document rules:** DNI/NIE require `apellido2` and `número de soporte`. DNI is Spanish-only. Passport/foreign ID/travel doc require only the front photo.
 - **Minors:** under 14 exempt from registration (RD 933/2021). 14–17 must complete the form and declare `parentesco` with an adult on the same reservation.
@@ -126,6 +136,7 @@ docs/
   - `::: warning` — behavior the user must be aware of (e.g., locked states, Brave push)
   - `::: danger` — destructive/irreversible actions only
 - Use tables for dense reference content (error codes, states, role matrices, platforms).
+- Mermaid diagrams must stay legible in light and dark mode: prefer top-down (`flowchart TD`) for state flows, keep labels short, avoid emoji in node/edge labels, and use `classDef` sparingly to highlight meaning (e.g. editable/action/locked) rather than decoration.
 - Use fenced code blocks only for actual code/URLs/flows. Do not wrap UI paths in code — write `Configuración → Equipo` as plain text with `→`.
 - Headings: H1 is the page title (one per page). H2 for major sections, H3 for sub-steps. Don't skip levels.
 - Dates in prose: `abril 2026` style. Dates in frontmatter: ISO `YYYY-MM-DD`.
@@ -157,6 +168,6 @@ docs/
 - Don't introduce alternative UI components, Vue widgets, or custom theme overrides beyond the brand tokens in `custom.css`. Plain markdown + default theme stays.
 - Don't add client-side JS or analytics scripts beyond the existing Umami snippet.
 - Don't duplicate legal content from the marketing site. Link to it.
-- Don't translate to English or add other locales. This site is `es-ES` only.
+- Don't add other locales beyond Spanish (`es-ES`) and English (`en-US`) without a product decision.
 - Don't remove `::: info` notes about Cataluña / País Vasco until those integrations actually ship in the app.
 - Don't change the `.vitepress/config.ts` title/description without also updating the OG meta block right below it.

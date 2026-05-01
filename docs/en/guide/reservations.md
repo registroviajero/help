@@ -1,6 +1,6 @@
 ---
 title: Create reservations
-description: How to create reservations manually, import them from iCal calendars, handle overbooking, reactivate cancelled ones, and search or export reservations in RegistroViajero.
+description: How to create reservations manually, import them from iCal calendars, handle overbooking, reactivate archived ones, and search or export reservations in RegistroViajero.
 ---
 
 ::: info Reference translation
@@ -30,14 +30,14 @@ Imported reservations that don't include guest data are created **with no guests
 
 ### Automatic cancellations
 
-If the OTA cancels a reservation, RegistroViajero marks it as **Cancelled** on the next iCal sync (every 15 minutes).
+If the OTA cancels a reservation, RegistroViajero marks it as **Archived** on the next iCal sync (every 15 minutes).
 
-### Reactivate a cancelled reservation
+### Reactivate an archived reservation
 
-If you need to recover a reservation that was cancelled by mistake, open it and hit **Reactivate**. RegistroViajero:
+If you need to recover a reservation that was archived by mistake, open it and hit **Reactivate**. RegistroViajero:
 
 - Reopens the reservation (state **Pending** or **Guest completed**, depending on existing data).
-- **Unlinks it from the iCal feed** that cancelled it so it won't be re-cancelled on the next sync.
+- **Unlinks it from the iCal feed** that archived it so it won't be archived again on the next sync.
 
 More detail in [Reactivate a reservation](/en/guide/reactivate-cancelled-booking).
 

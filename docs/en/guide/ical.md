@@ -40,7 +40,7 @@ You can connect several platforms to a single accommodation. Each feed syncs ind
 flowchart LR
   OTA[OTA<br/>platform] -- iCal --> RV[RegistroViajero]
   RV --> N[Reservations created<br/>or updated]
-  RV --> C[Reservations cancelled]
+  RV --> C[Reservations archived]
   RV --> K[Grouped<br/>notice]
 ```
 
@@ -59,10 +59,10 @@ Platforms that don't include guest data in the calendar create reservations with
 
 ## Automatic cancellations
 
-If a reservation disappears from the feed (because the guest cancelled in the OTA), RegistroViajero marks it as **Cancelled** on the next sync.
+If a reservation disappears from the feed (because the guest cancelled in the OTA), RegistroViajero marks it as **Archived** on the next sync.
 
 ::: tip Reactivate a cancellation
-If the cancellation was a mistake and you want the reservation back, open it and hit **Reactivate**. RegistroViajero unlinks it from the feed so it won't be re-cancelled on the next sync. More detail in [Reactivate a reservation](/en/guide/reactivate-cancelled-booking).
+If the cancellation was a mistake and you want the reservation back, open it and hit **Reactivate**. RegistroViajero unlinks it from the feed so it won't be archived again on the next sync. More detail in [Reactivate a reservation](/en/guide/reactivate-cancelled-booking).
 :::
 
 ## Enable and disable feeds

@@ -16,15 +16,24 @@ But sometimes that's exactly what you need: a guest correcting their document nu
 ## When you can unlock
 
 ```mermaid
-flowchart LR
+flowchart TD
   P[Pending] --> CP[Guest<br/>completed]
   CP --> V[Validated]
-  V -- "✅ You can unlock" --> CP
   V --> S[Sent]
   S --> C[Confirmed]
   S --> ER[Error]
-  ER -- "✅ You can unlock" --> CP
-  C -. "❌ Cancellation<br/>required" .-> CP
+
+  V -->|Open editing| E[Guest fixes data<br/>and signs again]
+  ER -->|Open editing| E
+  E -->|Starts over| P
+  C -. Cancellation required .-> A[Archived]
+
+  classDef editable fill:#dcfce7,stroke:#16a34a,color:#166534,stroke-width:2px;
+  classDef locked fill:#fee2e2,stroke:#dc2626,color:#991b1b,stroke-width:2px;
+  classDef action fill:#eff6ff,stroke:#2563eb,color:#1e3a8a,stroke-width:2px;
+  class V,ER editable;
+  class C,A locked;
+  class E action;
 ```
 
 You can flip the **Guest editing** switch only in these states:
@@ -32,13 +41,13 @@ You can flip the **Guest editing** switch only in these states:
 - **Validated** — you have validated the reservation but haven't submitted it yet.
 - **Error** — the Ministry has rejected the submission.
 
-In the rest of the states (**Sent**, **Confirmed**, **Cancelled**, **Blocked**), the only way to modify the data is to file a **cancellation** with the Ministry first.
+In the rest of the states (**Sent**, **Confirmed**, **Archived**, **Blocked**), the only way to modify the data is to file a **cancellation** with the Ministry first.
 
 ## How to unlock
 
 1. Open the reservation.
 2. Toggle **Guest editing** on.
-3. Share the check-in link again with the guest (or use their session yourself).
+3. Share the check-in link again with the guest.
 4. The guest clicks **Edit my information** on the final check-in screen.
 5. On click, the reservation auto-resets to **Pending** and the previous signature is deleted.
 6. The guest fixes the data and signs again.
@@ -55,10 +64,10 @@ If you lock editing from the panel **at the same time** the guest is clicking **
 ## Difference from a cancellation
 
 - **Unlock editing** — only in **Validated** or **Error**. Not sent to the Ministry. The reservation goes back to **Pending**.
-- **Cancellation** — for reservations already in **Confirmed**. Sent to the Ministry. The reservation moves to **Cancelled** and to register those guests again you must create a new reservation.
+- **Cancellation** — for reservations already in **Confirmed**. Sent to the Ministry. The reservation moves to **Archived** and to register those guests again you must create a new reservation.
 
 ## Best practices
 
 - If the Ministry returns an Error with a specific field, unlock editing and ask the guest to correct only that field.
 - Don't unlock at midnight without warning the guest — the "editing unlocked" visual cue may confuse them if they don't know why you're asking them back to the link.
-- If you're unsure whether a fix requires cancellation, check the [reservation state](/en/reference/states): as long as it isn't in **Sent**, **Confirmed**, **Cancelled**, or **Blocked**, you can edit without cancelling.
+- If you're unsure whether a fix requires cancellation, check the [reservation state](/en/reference/states): as long as it isn't in **Sent**, **Confirmed**, **Archived**, or **Blocked**, you can edit without cancelling.

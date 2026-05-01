@@ -20,8 +20,10 @@ The reservation goes into **Error** state. Open it to see the message returned. 
 To fix without filing a cancellation:
 
 1. On the reservation, click **Guest editing** to unlock guest editing.
-2. Ask the guest to correct the data (or correct it yourself).
+2. Ask the guest to return to their link and fix the flagged data.
 3. Validate again and resubmit.
+
+See the full flow in [Fix a Ministry rejection](/en/guide/fix-ministry-rejection).
 
 ### "Invalid credentials" when submitting
 
@@ -49,7 +51,7 @@ Check:
 
 - **Correct link:** make sure the guest opens the full link, including the code after `/checkin/`.
 - **Already used:** each link is unique per guest. If they have already completed check-in, reopening it shows the summary, not the form.
-- **Cancelled reservation:** if the reservation is cancelled, the link is disabled.
+- **Archived reservation:** if the reservation is archived, the link is disabled.
 
 ### The guest can't find where to upload the document photo
 
@@ -63,11 +65,13 @@ A message appears like "**A required field is missing for signature**". Check th
 - **EU registration certificate** → missing **support number**.
 - Age under 14 → minors under 14 are exempt and don't sign; add them as accompanied by the responsible adult.
 
+If the guest had already completed check-in, unlock **Guest editing** so they can sign again after correcting.
+
 ### "Editing locked" or "you cannot edit your data"
 
 The reservation no longer accepts changes from the guest side. Causes:
 
-- The reservation is in **Validated**, **Error**, **Sent**, **Confirmed**, **Cancelled**, or **Blocked**.
+- The reservation is in **Validated**, **Error**, **Sent**, **Confirmed**, **Archived**, or **Blocked**.
 - In **Validated** or **Error**, you (admin) can unlock guest editing from the reservation (**Guest editing** button).
 
 More detail in [Admin edit-lock override](/en/guide/admin-edit-lock-override).
@@ -78,6 +82,21 @@ Data is saved when moving to the next step. If the guest closes the browser **mi
 
 - Ask the guest to complete at least to the next step before closing.
 - If they reopen the same link, they pick up at the last saved step.
+
+### I don't know what to do with a specific reservation
+
+Use this guide based on the visible state:
+
+| Visible state | Normal action |
+| --- | --- |
+| **Pending** | Wait or resend check-in links. |
+| **Guest completed** | Review data and validate. |
+| **Validated** | Submit to the Ministry, unless you want to open editing first. |
+| **Sent** | Wait for the Ministry response. |
+| **Error** | Read the reason, fix, and submit again. |
+| **Confirmed** | No action needed unless the stay is actually cancelled. |
+
+More detail in [Review a reservation before submitting](/en/guide/review-reservation).
 
 ## Reservations
 
@@ -94,9 +113,9 @@ Usually happens when:
 
 Cancel one of the two copies. If it's a feed issue, check **Accommodations → Calendar feeds** and remove the duplicate.
 
-### A reservation cancelled on Booking still shows up
+### A reservation cancelled on Booking is not archived
 
-The iCal sync runs every **15 minutes**. If a reservation persists, force a manual sync from the accommodation page. If it still shows up, verify the reservation is actually cancelled in the Booking extranet.
+The iCal sync runs every **15 minutes**. If an OTA-cancelled reservation remains active in RegistroViajero, force a manual sync from the accommodation page. If it still remains active, verify the reservation is actually cancelled in the Booking extranet.
 
 ## Account and team
 

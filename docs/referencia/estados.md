@@ -13,7 +13,7 @@ Cada reserva pasa por una serie de estados que reflejan su progreso desde la cre
 stateDiagram-v2
   [*] --> Pendiente: Crear reserva
   Pendiente --> CompletadoHuespedes: Todos los huéspedes firman
-  Pendiente --> Cancelado: Cancelar
+  Pendiente --> Archivada: Archivar
   Pendiente --> Bloqueado: Sin huéspedes (bloqueo de fechas)
   CompletadoHuespedes --> Validado: Validas la reserva
   CompletadoHuespedes --> Pendiente: Huésped reabre edición
@@ -21,9 +21,9 @@ stateDiagram-v2
   Validado --> Pendiente: Huésped reabre edición
   Enviado --> Confirmado: Ministerio acepta
   Enviado --> Error: Ministerio rechaza
-  Error --> Validado: Corregir y reenviar
+  Error --> Validado: Validar de nuevo
   Error --> Pendiente: Huésped reabre edición
-  Confirmado --> Cancelado: Anulación al Ministerio
+  Confirmado --> Archivada: Anulación al Ministerio
 ```
 
 ## Estados de la reserva
@@ -36,7 +36,7 @@ stateDiagram-v2
 | **Enviado** | La comunicación se ha enviado a SES.HOSPEDAJES. Pendiente de respuesta. |
 | **Confirmado** | El Ministerio ha aceptado la comunicación. |
 | **Error** | El Ministerio ha rechazado la comunicación. Ver [errores SES](/referencia/errores-ses). |
-| **Cancelado** | La reserva se ha anulado (manualmente, desde iCal, o tras una anulación al Ministerio). |
+| **Archivada** | La reserva ya no está activa (la has archivado, la OTA la ha cancelado vía iCal o se ha enviado una anulación al Ministerio). |
 | **Bloqueado** | Bloqueo de fechas sin huéspedes (mantenimiento, uso personal, etc.). |
 
 ## Estados del huésped
@@ -58,7 +58,7 @@ Estados en los que la reserva es **inmutable** — no se pueden añadir ni quita
 
 - **Enviado**
 - **Confirmado**
-- **Cancelado**
+- **Archivada**
 - **Bloqueado**
 
 En **Pendiente**, **Completado por huéspedes**, **Validado** y **Error** la reserva sigue siendo modificable.
@@ -75,7 +75,7 @@ Independientemente del estado de la reserva, hay un interruptor que controla si 
 | **Error** | Bloqueada |
 | **Enviado** | Bloqueada |
 | **Confirmado** | Bloqueada |
-| **Cancelado** | Bloqueada |
+| **Archivada** | Bloqueada |
 | **Bloqueado** | Bloqueada |
 
 ### Desbloqueo manual
@@ -84,6 +84,6 @@ Solo en **Validado** y **Error** puedes desbloquear la edición del huésped con
 
 Cuando un huésped pulsa **Editar mis datos**, la reserva vuelve a **Pendiente** automáticamente.
 
-En el resto de estados (**Enviado**, **Confirmado**, **Cancelado**, **Bloqueado**) el interruptor no se puede tocar — la única forma de modificar los datos es enviar primero una anulación al Ministerio.
+En el resto de estados (**Enviado**, **Confirmado**, **Archivada**, **Bloqueado**) el interruptor no se puede tocar — la única forma de modificar los datos es enviar primero una anulación al Ministerio.
 
 Más detalle en [Desbloquear edición del huésped](/guia/desbloquear-edicion-huesped).

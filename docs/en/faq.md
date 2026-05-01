@@ -46,7 +46,7 @@ Yes. Data is saved automatically after each step. The guest can resume later by 
 
 ### Can the guest edit their data after signing?
 
-Yes, while the reservation is not locked. On the final screen they have an **Edit my information** button. If the reservation is already in **Sent**, **Confirmed**, **Cancelled**, or **Blocked**, the button is hidden.
+Yes, while the reservation is not locked. On the final screen they have an **Edit my information** button. If the reservation is already in **Sent**, **Confirmed**, **Archived**, or **Blocked**, the button is hidden.
 
 ### Can a guest reuse their data across stays?
 

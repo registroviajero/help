@@ -1,6 +1,6 @@
 ---
 title: Crear reservas
-description: Cómo crear reservas manualmente, importarlas desde calendarios iCal, gestionar overbooking, reactivar canceladas y buscar o exportar reservas en RegistroViajero.
+description: Cómo crear reservas manualmente, importarlas desde calendarios iCal, gestionar overbooking, reactivar archivadas y buscar o exportar reservas en RegistroViajero.
 ---
 
 # Crear reservas
@@ -26,14 +26,14 @@ Las reservas importadas que no incluyen datos de huéspedes se crean **sin hués
 
 ### Cancelaciones automáticas
 
-Si la OTA cancela una reserva, RegistroViajero la marca como **Cancelada** en el siguiente sync iCal (cada 15 minutos).
+Si la OTA cancela una reserva, RegistroViajero la marca como **Archivada** en el siguiente sync iCal (cada 15 minutos).
 
-### Reactivar una reserva cancelada
+### Reactivar una reserva archivada
 
-Si necesitas recuperar una reserva cancelada por error, ábrela y pulsa **Reactivar**. RegistroViajero:
+Si necesitas recuperar una reserva archivada por error, ábrela y pulsa **Reactivar**. RegistroViajero:
 
 - Vuelve a abrir la reserva (estado **Pendiente** o **Completado por huéspedes** según los datos existentes).
-- La **desvincula del feed iCal** que la cancelaba para que no vuelva a cancelarse en el próximo sync.
+- La **desvincula del feed iCal** que la archivaba para que no vuelva a archivarse en el próximo sync.
 
 Más detalle en [Reactivar una reserva](/guia/reactivar-reserva).
 

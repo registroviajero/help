@@ -36,7 +36,7 @@ Puedes conectar varias plataformas a un mismo alojamiento. Cada feed se sincroni
 flowchart LR
   OTA[Plataforma<br/>OTA] -- iCal --> RV[RegistroViajero]
   RV --> N[Reservas creadas<br/>o actualizadas]
-  RV --> C[Reservas canceladas]
+  RV --> C[Reservas archivadas]
   RV --> K[Aviso<br/>agrupado]
 ```
 
@@ -55,10 +55,10 @@ Las plataformas que no incluyen datos de huéspedes en el calendario crean reser
 
 ## Cancelaciones automáticas
 
-Si una reserva desaparece del feed (porque el huésped la canceló en la OTA), RegistroViajero la marca como **Cancelada** en el siguiente sync.
+Si una reserva desaparece del feed (porque el huésped la canceló en la OTA), RegistroViajero la marca como **Archivada** en el siguiente sync.
 
 ::: tip Reactivar una cancelación
-Si la cancelación fue un error y quieres recuperar la reserva, ábrela y pulsa **Reactivar**. RegistroViajero la desvincula del feed para que no vuelva a cancelarse en el siguiente sync. Más detalle en [Reactivar una reserva](/guia/reactivar-reserva).
+Si la cancelación fue un error y quieres recuperar la reserva, ábrela y pulsa **Reactivar**. RegistroViajero la desvincula del feed para que no vuelva a archivarse en el siguiente sync. Más detalle en [Reactivar una reserva](/guia/reactivar-reserva).
 :::
 
 ## Activar y desactivar feeds

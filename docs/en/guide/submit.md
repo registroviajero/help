@@ -29,7 +29,7 @@ sequenceDiagram
   RV-->>You: Confirmed or Error
 ```
 
-1. **Review** — check that every guest's data is correct.
+1. **Review** — check that every guest's data is correct. See [Review a reservation before submitting](/en/guide/review-reservation).
 2. **Validate** — mark the reservation as validated. This confirms you have reviewed the data.
 3. **Submit** — with one click, RegistroViajero prepares the documents and sends them to SES.HOSPEDAJES.
 4. **Wait for the result** — the Ministry may take a few seconds to respond. RegistroViajero polls automatically and notifies you when there's news.
@@ -46,7 +46,7 @@ You don't have to prepare anything — RegistroViajero generates them from the d
 ## Possible outcomes
 
 - **Confirmed** — the Ministry has accepted the report. Nothing else to do.
-- **Error** — the Ministry has rejected some data. See [Ministry errors](/en/reference/ses-errors) to identify the field to fix.
+- **Error** — the Ministry has rejected some data. See [Fix a Ministry rejection](/en/guide/fix-ministry-rejection) and [Ministry errors](/en/reference/ses-errors) to identify the field to fix.
 
 ::: info Duplicate resubmissions
 If a network blip causes RegistroViajero to send the same report twice, the Ministry detects the duplicate and RegistroViajero automatically recovers the response from the first submission. No action needed.
@@ -54,18 +54,18 @@ If a network blip causes RegistroViajero to send the same report twice, the Mini
 
 ## Fix a rejected submission (without cancelling)
 
-Unlike **Sent** or **Confirmed**, an **Error** state **does not lock** the reservation. You can:
+Unlike **Sent** or **Confirmed**, a reservation in **Error** can still be corrected without cancelling. Guest editing is locked by default, but you can open it:
 
 1. Open the reservation.
 2. Click **Guest editing** to unlock guest editing.
-3. Ask the guest to correct the data (or correct it yourself).
+3. Ask the guest to return to their link and fix the flagged data.
 4. Validate again and resubmit.
 
 No prior Ministry cancellation is needed — the new submission replaces the previous attempt.
 
 ## Cancellation
 
-If a reservation is already **Confirmed** and you need to cancel it with the Ministry (because the guest or the OTA cancelled), use the **Cancel** option on the reservation. RegistroViajero sends a cancellation to SES.HOSPEDAJES and the reservation moves to **Cancelled**.
+If a reservation is already **Confirmed** and you need to cancel it with the Ministry (because the guest or the OTA cancelled), a **cancellation** must be sent to SES.HOSPEDAJES first. After that, the reservation is **Archived**. If you do not see the cancellation action on the reservation, contact support before creating another submission for the same stay.
 
 ## Prerequisites
 

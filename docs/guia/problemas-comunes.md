@@ -16,8 +16,10 @@ La reserva queda en estado **Error**. Abre la reserva para ver el mensaje devuel
 Para corregir sin enviar una anulación:
 
 1. En la reserva, pulsa **Edición del huésped** para desbloquear la edición.
-2. Pide al huésped que corrija los datos (o corrígelos tú).
+2. Pide al huésped que vuelva a su enlace y corrija el dato señalado.
 3. Vuelve a validar y reenvía.
+
+Ver el flujo completo en [Corregir un rechazo del Ministerio](/guia/corregir-rechazo-ministerio).
 
 ### "Credenciales no válidas" al enviar
 
@@ -45,7 +47,7 @@ Comprueba:
 
 - **Enlace correcto:** asegúrate de que el huésped está abriendo el enlace completo, incluido el código que va después de `/checkin/`.
 - **Enlace ya usado:** cada enlace es único por huésped. Si ya completó el check-in, volver a abrirlo muestra el resumen, no el formulario.
-- **Reserva cancelada:** si la reserva ha sido cancelada, el enlace se deshabilita.
+- **Reserva archivada:** si la reserva está archivada, el enlace se deshabilita.
 
 ### El huésped no encuentra dónde subir la foto del documento
 
@@ -59,11 +61,13 @@ Aparece un mensaje como "**Falta un campo obligatorio para firmar**". Revisa lo 
 - **Certificado de registro UE** → falta el **número de soporte**.
 - Edad menor de 14 años → los menores de 14 están exentos y no firman; añádelos como acompañantes del adulto responsable.
 
+Si el huésped ya había completado el check-in, desbloquea **Edición del huésped** para que pueda volver a firmar después de corregir.
+
 ### "Edición bloqueada" o "no puedes editar tus datos"
 
 La reserva ya no permite cambios desde el lado del huésped. Causas:
 
-- La reserva está en **Validado**, **Error**, **Enviado**, **Confirmado**, **Cancelado** o **Bloqueado**.
+- La reserva está en **Validado**, **Error**, **Enviado**, **Confirmado**, **Archivada** o **Bloqueado**.
 - En **Validado** o **Error**, tú (admin) puedes desbloquear la edición desde la reserva (botón **Edición del huésped**).
 
 Más detalle en [Desbloquear edición del huésped](/guia/desbloquear-edicion-huesped).
@@ -74,6 +78,21 @@ Los datos se guardan al pasar al siguiente paso. Si el huésped cierra el navega
 
 - Pide al huésped que complete al menos hasta el siguiente paso antes de cerrar.
 - Si vuelve a entrar con el mismo enlace, retoma desde el último paso guardado.
+
+### No sé qué hacer con una reserva concreta
+
+Usa esta guía según el estado visible:
+
+| Estado visible | Acción normal |
+| --- | --- |
+| **Pendiente** | Esperar o reenviar enlaces de check-in. |
+| **Completado por huéspedes** | Revisar datos y validar. |
+| **Validado** | Enviar al Ministerio, salvo que quieras abrir la edición antes. |
+| **Enviado** | Esperar la respuesta del Ministerio. |
+| **Error** | Leer el motivo, corregir y reenviar. |
+| **Confirmado** | No hace falta más acción, salvo cancelación real de la estancia. |
+
+Más detalle en [Revisar una reserva antes de enviarla](/guia/revisar-reserva).
 
 ## Reservas
 
@@ -90,9 +109,9 @@ Suele pasar cuando:
 
 Cancela una de las dos copias y, si es un problema de feeds, revisa **Alojamientos → Feeds de calendario** y elimina el duplicado.
 
-### Una reserva cancelada en Booking sigue apareciendo
+### Una reserva cancelada en Booking no se archiva
 
-El sync iCal corre cada **15 minutos**. Si una reserva sigue sin desaparecer, fuerza un sync manual desde la página del alojamiento. Si persiste, comprueba que la reserva está realmente cancelada en el extranet de Booking.
+El sync iCal corre cada **15 minutos**. Si una reserva cancelada en la OTA sigue activa en RegistroViajero, fuerza un sync manual desde la página del alojamiento. Si persiste, comprueba que la reserva está realmente cancelada en el extranet de Booking.
 
 ## Cuenta y equipo
 

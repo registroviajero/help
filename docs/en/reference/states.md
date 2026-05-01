@@ -17,7 +17,7 @@ Every reservation moves through a set of states reflecting its progress from cre
 stateDiagram-v2
   [*] --> Pending: Create reservation
   Pending --> GuestCompleted: All guests sign
-  Pending --> Cancelled: Cancel
+  Pending --> Archived: Archive
   Pending --> Blocked: No guests (date block)
   GuestCompleted --> Validated: You validate the reservation
   GuestCompleted --> Pending: Guest reopens edit
@@ -25,9 +25,9 @@ stateDiagram-v2
   Validated --> Pending: Guest reopens edit
   Sent --> Confirmed: Ministry accepts
   Sent --> Error: Ministry rejects
-  Error --> Validated: Fix and resubmit
+  Error --> Validated: Validate again
   Error --> Pending: Guest reopens edit
-  Confirmed --> Cancelled: Cancellation to Ministry
+  Confirmed --> Archived: Ministry cancellation
 ```
 
 ## Reservation states
@@ -40,7 +40,7 @@ stateDiagram-v2
 | **Sent** | The submission has been sent to SES.HOSPEDAJES. Awaiting response. |
 | **Confirmed** | The Ministry has accepted the submission. |
 | **Error** | The Ministry has rejected the submission. See [SES errors](/en/reference/ses-errors). |
-| **Cancelled** | The reservation has been cancelled (manually, from iCal, or after a Ministry cancellation). |
+| **Archived** | The reservation is no longer active (you archived it, the OTA cancelled it through iCal, or a Ministry cancellation was filed). |
 | **Blocked** | Date block with no guests (maintenance, personal use, etc.). |
 
 ## Guest states
@@ -62,7 +62,7 @@ States in which the reservation is **immutable** — you cannot add or remove gu
 
 - **Sent**
 - **Confirmed**
-- **Cancelled**
+- **Archived**
 - **Blocked**
 
 In **Pending**, **Guest completed**, **Validated**, and **Error** the reservation remains editable.
@@ -79,7 +79,7 @@ Independent of the reservation state, a separate switch controls whether guests 
 | **Error** | Locked |
 | **Sent** | Locked |
 | **Confirmed** | Locked |
-| **Cancelled** | Locked |
+| **Archived** | Locked |
 | **Blocked** | Locked |
 
 ### Manual unlock
@@ -88,6 +88,6 @@ Only in **Validated** and **Error** can you unlock guest editing with one click,
 
 When a guest hits **Edit my information**, the reservation auto-resets to **Pending**.
 
-In the remaining states (**Sent**, **Confirmed**, **Cancelled**, **Blocked**) the switch is disabled — the only way to modify the data is to file a cancellation with the Ministry first.
+In the remaining states (**Sent**, **Confirmed**, **Archived**, **Blocked**) the switch is disabled — the only way to modify the data is to file a cancellation with the Ministry first.
 
 More detail in [Admin edit-lock override](/en/guide/admin-edit-lock-override).

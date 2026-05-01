@@ -25,7 +25,7 @@ sequenceDiagram
   RV-->>Tu: Confirmado o Error
 ```
 
-1. **Revisar** — comprueba que los datos de todos los huéspedes son correctos.
+1. **Revisar** — comprueba que los datos de todos los huéspedes son correctos. Ver [Revisar una reserva antes de enviarla](/guia/revisar-reserva).
 2. **Validar** — marca la reserva como validada. Confirma que has revisado los datos.
 3. **Enviar** — con un clic, RegistroViajero prepara los documentos y los envía a SES.HOSPEDAJES.
 4. **Espera el resultado** — el Ministerio puede tardar unos segundos en responder. RegistroViajero consulta el estado automáticamente y te avisa cuando hay novedades.
@@ -42,7 +42,7 @@ Tú no tienes que preparar nada — RegistroViajero los genera con los datos que
 ## Resultados posibles
 
 - **Confirmado** — el Ministerio ha aceptado la comunicación. No hace falta más.
-- **Error** — el Ministerio ha rechazado algún dato. Ver [errores del Ministerio](/referencia/errores-ses) para identificar el campo a corregir.
+- **Error** — el Ministerio ha rechazado algún dato. Ver [Corregir un rechazo del Ministerio](/guia/corregir-rechazo-ministerio) y [errores del Ministerio](/referencia/errores-ses) para identificar el campo a corregir.
 
 ::: info Reenvíos duplicados
 Si por una incidencia de red RegistroViajero acaba enviando dos veces la misma comunicación, el Ministerio detecta el duplicado y RegistroViajero recupera automáticamente la respuesta del primer envío. No tienes que hacer nada.
@@ -50,18 +50,18 @@ Si por una incidencia de red RegistroViajero acaba enviando dos veces la misma c
 
 ## Corregir un envío rechazado (sin anular)
 
-A diferencia del estado **Enviado** o **Confirmado**, un envío en **Error** **no bloquea** la reserva. Puedes:
+A diferencia de **Enviado** o **Confirmado**, una reserva en **Error** todavía permite correcciones sin anular. La edición del huésped está bloqueada por defecto, pero puedes abrirla:
 
 1. Abrir la reserva.
 2. Pulsar **Edición del huésped** para desbloquear la edición.
-3. Pedir al huésped que corrija los datos (o corregirlos tú).
+3. Pedir al huésped que vuelva a su enlace y corrija el dato señalado.
 4. Volver a validar y reenviar.
 
 No hace falta una anulación previa al Ministerio — la nueva comunicación reemplaza al intento anterior.
 
 ## Anulación
 
-Si una reserva ya está **Confirmada** y necesitas cancelarla en el Ministerio (porque la cancela el huésped o la OTA), usa la opción **Cancelar** en la reserva. RegistroViajero envía una anulación a SES.HOSPEDAJES y deja la reserva en estado **Cancelado**.
+Si una reserva ya está **Confirmada** y necesitas cancelarla en el Ministerio (porque la cancela el huésped o la OTA), primero debe enviarse una **anulación** a SES.HOSPEDAJES. Después, la reserva queda **Archivada**. Si no ves la acción de anulación en la reserva, contacta con soporte antes de crear otra comunicación para la misma estancia.
 
 ## Requisitos previos
 
