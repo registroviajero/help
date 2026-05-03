@@ -1,4 +1,8 @@
 :root {
+  /* Match marketing site font stack — system-ui with emoji fallbacks */
+  --vp-font-family-base: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --vp-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
   /* Brand blue #2563eb mapped to VitePress color system */
   --vp-c-brand-1: #2563eb;
   --vp-c-brand-2: #3b82f6;

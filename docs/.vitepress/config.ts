@@ -289,7 +289,17 @@ const FAQ_SCHEMA_JSON: Record<Locale, string> = {
 
 const esNav: DefaultTheme.NavItem[] = [
   { text: 'Guía', link: '/guia/' },
+  {
+    text: 'Referencia',
+    items: [
+      { text: 'Estados de reserva', link: '/referencia/estados' },
+      { text: 'Tipos de documento', link: '/referencia/tipos-documento' },
+      { text: 'Errores del Ministerio', link: '/referencia/errores-ses' },
+      { text: 'Sanciones', link: '/referencia/sanciones' },
+    ],
+  },
   { text: 'FAQ', link: '/faq' },
+  { text: 'Problemas comunes', link: '/guia/problemas-comunes' },
   { text: 'Legal', link: 'https://registroviajero.com/legal/aviso-legal' },
   { text: 'Web', link: 'https://registroviajero.com' },
   { text: 'App', link: 'https://app.registroviajero.com' },
@@ -363,7 +373,17 @@ const esSidebar: DefaultTheme.Sidebar = [
 
 const enNav: DefaultTheme.NavItem[] = [
   { text: 'Guide', link: '/en/guide/' },
+  {
+    text: 'Reference',
+    items: [
+      { text: 'Reservation states', link: '/en/reference/states' },
+      { text: 'Document types', link: '/en/reference/document-types' },
+      { text: 'Ministry errors', link: '/en/reference/ses-errors' },
+      { text: 'Penalties', link: '/en/reference/penalties' },
+    ],
+  },
   { text: 'FAQ', link: '/en/faq' },
+  { text: 'Common issues', link: '/en/guide/common-issues' },
   { text: 'Legal', link: 'https://registroviajero.com/en/legal/legal-notice' },
   { text: 'Web', link: 'https://registroviajero.com/en/' },
   { text: 'App', link: 'https://app.registroviajero.com' },
@@ -463,8 +483,14 @@ const COPYRIGHT_YEAR = new Date().getFullYear()
 export default withMermaid(defineConfig({
   title: SITE_TITLE.es,
   description: SITE_DESCRIPTION.es,
+  titleTemplate: ':title | RegistroViajero',
   cleanUrls: true,
   lastUpdated: true,
+
+  ignoreDeadLinks: [
+    /^https?:\/\/localhost/,
+    /^https:\/\/(analytics|polar)\./,
+  ],
 
   mermaid: {
     theme: 'neutral',
@@ -534,6 +560,8 @@ export default withMermaid(defineConfig({
         search: { provider: 'local' },
         outline: { label: 'En esta página', level: [2, 3] },
         docFooter: { prev: 'Anterior', next: 'Siguiente' },
+        externalLinkIcon: true,
+        skipToContentLabel: 'Saltar al contenido',
         returnToTopLabel: 'Volver arriba',
         sidebarMenuLabel: 'Menú',
         darkModeSwitchLabel: 'Tema',
@@ -561,6 +589,8 @@ export default withMermaid(defineConfig({
         search: { provider: 'local' },
         outline: { label: 'On this page', level: [2, 3] },
         docFooter: { prev: 'Previous', next: 'Next' },
+        externalLinkIcon: true,
+        skipToContentLabel: 'Skip to content',
         returnToTopLabel: 'Back to top',
         sidebarMenuLabel: 'Menu',
         darkModeSwitchLabel: 'Theme',
